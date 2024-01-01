@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
+  database: machida_blog_development
+
+test:
+  <<: *default
+  database: machida_blog_test
+
+production:
+  <<: *default
+  host:     <%= ENV["DB_HOST"] %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
