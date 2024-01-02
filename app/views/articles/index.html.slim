@@ -1,0 +1,31 @@
+p style="color: green" = notice
+
+h1 Articles
+= link_to "New article", new_article_path
+
+.articles
+  h2 すべて
+  - @articles.each do |article|
+    == render article
+    p
+      = link_to "Show this article", article
+
+.articles
+  h2 公開
+  - if @published_articles.exists?
+    - @published_articles.each do |article|
+      == render article
+      p
+        = link_to "Show this article", article
+  - else
+    | なし
+
+.articles
+  h2 非公開
+  - if @unpublished_articles.exists?
+    - @unpublished_articles.each do |article|
+      == render article
+      p
+        = link_to "Show this article", article
+  - else
+    | なし

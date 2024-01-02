@@ -1,0 +1,26 @@
+= form_with(model: article) do |form|
+  - if article.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(article.errors.count, "error")} prohibited this article from being saved:"
+      ul
+        - article.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+
+  div
+    = form.label :body, style: "display: block"
+    = form.text_area :body
+
+  div
+    = form.label :status, style: "display: block"
+    = form.select :status, ['draft', 'published'], prompt: 'Select Status'
+
+  div
+    = form.label :published_at, style: "display: block"
+    = form.datetime_field :published_at
+
+  div
+    = form.submit
