@@ -1,13 +1,13 @@
 div id="#{dom_id article}"
-  p
-    strong Title:
-    =< article.title
-  p
-    strong Body:
-    =< article.body
+  h1
+    = link_to article do
+      = article.title
+
+  = article.body
+
   p
     strong Status:
-    =< article.status
+    = article.status
   p
     strong Published at:
-    =< article.published_at
+    = article.published_at

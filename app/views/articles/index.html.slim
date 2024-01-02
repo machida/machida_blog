@@ -1,7 +1,6 @@
 p style="color: green" = notice
 
 h1 Articles
-= link_to "New article", new_article_path
 
 .articles
   h2 すべて
@@ -9,6 +8,8 @@ h1 Articles
     == render article
     p
       = link_to "Show this article", article
+
+hr.bt-1
 
 .articles
   h2 公開
@@ -19,6 +20,8 @@ h1 Articles
         = link_to "Show this article", article
   - else
     | なし
+
+hr.bt-1
 
 .articles
   h2 非公開

@@ -15,12 +15,9 @@
     = form.text_area :body
 
   div
-    = form.label :status, style: "display: block"
-    = form.select :status, ['draft', 'published'], prompt: 'Select Status'
-
-  div
     = form.label :published_at, style: "display: block"
     = form.datetime_field :published_at
 
   div
-    = form.submit
+    = form.submit "Draftで保存", name: "save_as_draft"
+    = form.submit "Publishedで保存", name: "publish"
