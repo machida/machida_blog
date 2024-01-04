@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3.0
+ARG RUBY_VERSION=3.2.2
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
@@ -16,6 +16,9 @@ ENV RAILS_ENV="production" \
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
+
+# 追加
+RUN apt-get update && apt-get install -y libpq-dev
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
