@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
+        format.html { redirect_to article_url(@article), notice: '記事を作成しました。' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
+        format.html { redirect_to article_url(@article), notice: '記事を更新しました。' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
     if @article.user == current_user
       @article.destroy
       respond_to do |format|
-        format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
+        format.html { redirect_to articles_url, notice: '記事を削除しました。' }
         format.json { head :no_content }
       end
     else
@@ -83,10 +83,6 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def authenticate_user
-      redirect_to login_path unless user_signed_in?
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])

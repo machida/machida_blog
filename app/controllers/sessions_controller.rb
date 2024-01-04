@@ -18,6 +18,9 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     @current_user = nil
-    redirect_to root_path, notice: 'ログアウトしました。'
+    respond_to do |format|
+      format.html { redirect_to articles_path, notice: 'ログアウトしました。' }
+      format.turbo_stream { flash.now[:notice] = 'ログアウトしました。' }
+    end
   end
 end

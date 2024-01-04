@@ -1,0 +1,8 @@
+h1 サイト設定の編集
+
+= form_with model: @site_setting, url: site_settings_path, local: true do |form|
+  .div
+    = form.label :site_title, 'サイトタイトル'
+    = form.text_field :site_title
+
+  = form.submit '更新'

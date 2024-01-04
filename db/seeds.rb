@@ -8,6 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create!([
-  { email: 'user1@example.com', password: 'password', password_confirmation: 'password', account_id: 'machida' },
-])
+User.find_or_create_by(email: 'user1@example.com') do |user|
+  user.account_id = 'machida'
+  user.password = 'password'
+  user.password_confirmation = 'password'
+  # 他の属性
+end
+
+SiteSetting.create(site_title: 'ブログタイトル')

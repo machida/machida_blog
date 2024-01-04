@@ -1,12 +1,8 @@
-p style="color: green" = notice
-
 h1 下書き記事一覧
 
 .articles
   - if @draft_articles.exists?
     - @draft_articles.each do |article|
       == render article
-      p
-        = link_to "Show this article", article
   - else
     | 下書き記事はありません。

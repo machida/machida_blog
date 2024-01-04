@@ -1,0 +1,4 @@
+- if flash.any?
+  - flash.each do |type, message|
+    .flash(class="is-#{type}")
+      = message
