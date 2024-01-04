@@ -70,3 +70,4 @@ end
 # not default
 gem 'slim-rails'
 gem "tailwindcss-rails", "~> 2.1"
+gem 'bcrypt', '~> 3.1.7'

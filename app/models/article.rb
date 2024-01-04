@@ -5,4 +5,5 @@ class Article < ApplicationRecord
 
   scope :published, -> { where(status: 'published') }
   scope :drafts, -> { where(status: 'draft') }
+  belongs_to :user
 end

@@ -1,11 +1,16 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :authenticate_user, only: %i[ new create edit update destroy drafts ]
 
   # GET /articles or /articles.json
   def index
     @articles = Article.all
     @published_articles = Article.where(status: 'published')
     @unpublished_articles = Article.where(status: 'draft')
+  end
+
+  def drafts
+    @draft_articles = Article.where(status: 'draft')
   end
 
   # GET /articles/1 or /articles/1.json
@@ -19,11 +24,22 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    @article = Article.find(params[:id])
+    redirect_to articles_path unless @article.user == current_user
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.user == current_user && @article.update(article_params)
+      # 更新処理
+    else
+      # エラー処理
+    end
   end
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
     set_status
 
     respond_to do |format|
@@ -53,17 +69,24 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1 or /articles/1.json
   def destroy
-    @article.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
+    @article = Article.find(params[:id])
+    if @article.user == current_user
+      @article.destroy
+      respond_to do |format|
+        format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      # エラー処理
     end
   end
 
   private
+    def authenticate_user
+      redirect_to login_path unless user_signed_in?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])

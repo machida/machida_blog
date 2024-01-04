@@ -12,7 +12,16 @@ html
   body
     header
       .container
-        = link_to "New article", new_article_path
+        - if user_signed_in?
+          = link_to "New article", new_article_path
+          //= @current_user.id
+          = form_with url: logout_path, method: :delete do
+            = submit_tag 'Logout'
+          = link_to drafts_path do
+            | 下書き記事一覧
+        - else
+          = link_to login_path do
+            | Login
     hr.bt-1
     main
       .container

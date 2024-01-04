@@ -1,11 +1,12 @@
-p style="color: green" = notice
+p style='color: green' = notice
 
 == render @article
 
 ul
+  - if current_user == @article.user
+    li
+      = link_to 'Edit', edit_article_path(@article)
+    li
+      = button_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' }
   li
-    = link_to "Edit", edit_article_path(@article)
-  li
-    = button_to "Destroy", @article, method: :delete
-  li
-    = link_to "Back", articles_path
+    = link_to 'Back', articles_path

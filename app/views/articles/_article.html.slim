@@ -1,13 +1,18 @@
-div id="#{dom_id article}"
+article(class="is-#{article.status}" id="#{dom_id article}")
   h1
     = link_to article do
       = article.title
 
   = article.body
-
+  p
+    strong user:
+    = article.user.account_id
   p
     strong Status:
     = article.status
   p
-    strong Published at:
-    = article.published_at
+    - if published?(article)
+      strong 公開日時:
+      = article.published_at
+    - else
+      | 未公開

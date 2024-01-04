@@ -1,0 +1,10 @@
+- unless current_user
+  .container-sm
+    = form_with scope: :session, url: login_path, local: true do |f|
+      = f.label :login, 'Email or Account ID'
+      = f.text_field :login
+
+      = f.label :password
+      = f.password_field :password
+
+      = f.submit 'Log in'
