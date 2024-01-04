@@ -10,7 +10,7 @@ console_command = "/rails/bin/rails console"
 [build]
   [build.args]
     BUNDLER_VERSION = "2.3.15"
-    RUBY_VERSION = "3.0.2"
+    RUBY_VERSION = "3.3.0"
 
 [deploy]
   release_command = "./bin/rails db:prepare"
