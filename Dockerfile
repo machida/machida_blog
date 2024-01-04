@@ -17,9 +17,6 @@ ENV RAILS_ENV="production" \
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
-# 追加
-RUN apt-get update && apt-get install -y libpq-dev
-
 # Install packages needed to build gems
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
@@ -44,8 +41,12 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 FROM base
 
 # Install packages needed for deployment
+#RUN apt-get update -qq && \
+#    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
+#    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+#　以下に修正
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
+    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips libpq-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
