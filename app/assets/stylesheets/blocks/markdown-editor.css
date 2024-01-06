@@ -1,0 +1,13 @@
+.markdown-editor__columns {
+  display: flex;
+  gap: 2rem
+}
+
+.markdown-editor__column {
+  flex: 1;
+}
+
+.markdown-editor__input {
+  min-height: 30rem;
+  overflow: hidden;
+}

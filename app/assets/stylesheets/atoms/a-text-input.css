@@ -1,0 +1,9 @@
+.a-text-input {
+  display: block;
+  border-radius: .25rem;
+  border: solid 1px #ccc;
+  padding: .25rem .5rem;
+  line-height: 1.6;
+  width: 100%;
+  letter-spacing: .075em;
+}

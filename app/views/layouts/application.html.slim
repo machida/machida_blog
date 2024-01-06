@@ -1,24 +1,25 @@
 doctype html
 html
   = render 'head'
-  body
-    header
-      .container
-        - if user_signed_in?
-          = link_to "New article", new_article_path
-          //= @current_user.id
-          = form_with url: logout_path, method: :delete do
-            = submit_tag 'Logout'
-          = link_to drafts_path do
-            | 下書き記事一覧
-          = link_to edit_site_settings_path do
-            | サイト設定
-        - else
-          = link_to login_path do
-            | Login
-    hr.bt-1
-    main
-      .container
-        #flash-messages
-          p style="color: green" = notice
-        = yield
+  body.is-application
+    .admin-tool-bar
+      .a-container
+        .admin-tool-bar__inner
+          h1.admin-tool-bar__logo
+            = site_title
+          - if user_signed_in?
+            = link_to "New article", new_article_path
+            //= @current_user.id
+            = form_with url: logout_path, method: :delete do
+              = submit_tag 'Logout'
+            = link_to drafts_path do
+              | 下書き記事一覧
+            = link_to edit_site_settings_path do
+              | サイト設定
+          - else
+            = link_to login_path do
+              | Login
+    .app-body
+      #flash-messages
+        p style="color: green" = notice
+      = yield

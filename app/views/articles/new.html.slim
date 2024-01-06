@@ -1,11 +1,14 @@
-h1 新規投稿
-
-== render 'form', article: @article
-
-br
-
-div
-  = link_to 'Back to articles', articles_path
+main.admin-page
+  header.admin-page__header
+    .a-container
+      .admin-page__header-inner
+        h1.admin-page__title
+          | 新規投稿
+  .admin-page__body
+    .a-container
+      .admin-page__body-inner
+        == render 'form', article: @article
+        = link_to 'Back to articles', articles_path
 
 - content_for :js do
   = javascript_import_module_tag 'articles/new'

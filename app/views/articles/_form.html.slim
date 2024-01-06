@@ -9,21 +9,29 @@
 
   .form__items
     .form-item
-      = form.label :title, style: 'display: block'
-      = form.text_field :title
+      .form-item__header
+        = form.label :title, style: 'display: block'
+      .form-item__body
+        = form.text_field :title, class: 'a-text-input'
 
     .form-item
-      = form.label :body, style: 'display: block'
-      .flex
-        .container-md
-          = form.text_area :body, id: 'markdown-editor'
-        .container-md
-          #markdown-editor__preview
+      .form-item__header
+        = form.label :body, style: 'display: block'
+      .form-item__body
+        .markdown-editor
+          .markdown-editor__columns
+            .markdown-editor__column
+              = form.text_area :body, id: 'markdown-editor', class: 'a-text-input markdown-editor__input'
+            .markdown-editor__column
+              .markdown-editor__preview
+                #markdown-editor__preview
 
     .form-item
-      = form.label :published_at, style: 'display: block'
-      = form.datetime_field :published_at
+      .form-item__header
+        = form.label :published_at, style: 'display: block'
+      .form-item__body
+        = form.datetime_field :published_at, class: 'a-text-input'
 
     .form-item
-      = form.submit 'Draftで保存', name: 'save_as_draft'
-      = form.submit 'Publishedで保存', name: 'publish'
+      = form.submit 'Draft', name: 'save_as_draft'
+      = form.submit '公開', name: 'publish'

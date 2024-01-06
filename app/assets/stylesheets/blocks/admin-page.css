@@ -1,0 +1,15 @@
+.admin-page__header {
+  background-color: #0EA5E9;
+}
+
+.admin-page__header-inner {
+  min-height: 3.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.admin-page__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+}

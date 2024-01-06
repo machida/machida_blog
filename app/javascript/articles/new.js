@@ -1,14 +1,23 @@
-console.log('aaaa');
+import 'markdownit';
+
 const textarea = document.getElementById('markdown-editor');
 const preview = document.getElementById('markdown-editor__preview');
 const md = markdownit();
 
-textarea.addEventListener('input', changeTextArea);
+textarea.addEventListener('input', function() {
+  updateMarkdownPreview();
+  autoResizeTextarea();
+});
 
-function changeTextArea() {
-    // Convert the Markdown text to HTML
-    const html = md.render(textarea.value);
+function updateMarkdownPreview() {
+  // Convert the Markdown text to HTML
+  const html = md.render(textarea.value);
+  // Set the HTML content of the preview element
+  preview.innerHTML = html;
+}
 
-    // Set the HTML content of the preview element
-    preview.innerHTML = html;
+// テキストエリアの高さを自動調整する関数
+function autoResizeTextarea() {
+    textarea.style.height = 'auto';
+    textarea.style.height = (textarea.scrollHeight) + 'px';
 }
