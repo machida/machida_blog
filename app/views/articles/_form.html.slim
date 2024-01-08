@@ -10,25 +10,25 @@
   .form__items
     .form-item
       .form-item__header
-        = form.label :title, style: 'display: block'
+        = form.label 'タイトル', for: 'article_title'
       .form-item__body
         = form.text_field :title, class: 'a-text-input'
 
     .form-item
       .form-item__header
-        = form.label :body, style: 'display: block'
+        = form.label '本文', for: 'markdown-input'
       .form-item__body
         .markdown-editor
           .markdown-editor__columns
             .markdown-editor__column
-              = form.text_area :body, id: 'markdown-editor', class: 'a-text-input markdown-editor__input'
+              = form.text_area :body, id: 'markdown-input', class: 'a-text-input markdown-editor__input'
             .markdown-editor__column
               .markdown-editor__preview
-                #markdown-editor__preview
+                #markdown-preview
 
     .form-item
       .form-item__header
-        = form.label :published_at, style: 'display: block'
+        = form.label '公開日時', for: 'article_published_at'
       .form-item__body
         = form.datetime_field :published_at, class: 'a-text-input'
 

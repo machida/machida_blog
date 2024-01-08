@@ -1,7 +1,7 @@
 import 'markdownit';
 
-const textarea = document.getElementById('markdown-editor');
-const preview = document.getElementById('markdown-editor__preview');
+const textarea = document.getElementById('markdown-input');
+const preview = document.getElementById('markdown-preview');
 const md = markdownit();
 
 textarea.addEventListener('input', function() {
