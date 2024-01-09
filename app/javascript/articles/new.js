@@ -1,6 +1,4 @@
-import 'markdownit';
-import 'markdown-it-emoji';
-
+const csrfToken = document.querySelector('[name="csrf-token"]').content;
 const textarea = document.getElementById('markdown-input');
 const preview = document.getElementById('markdown-preview');
 const md = markdownit({
@@ -11,10 +9,25 @@ const md = markdownit({
   linkify: true /*not default*/,
   typographer: true /*not default*/,
   quotes: '“”‘’',
-  highlight: function (/*str, lang*/) { return ''; }
+  highlight: function (str, lang) {
+    if (lang && Prism.languages[lang]) {
+      try {
+        return '<pre class="language-' + lang + '"><code>' +
+               Prism.highlight(str, Prism.languages[lang], lang) +
+               '</code></pre>';
+      } catch (__) {}
+    }
+
+    return '<pre class="language-none"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+  }
 });
 
 md.use(window.markdownitEmoji);
+
+document.addEventListener("turbo:load", function() {
+  updateMarkdownPreview();
+  autoResizeTextarea();
+});
 
 textarea.addEventListener('input', function() {
   updateMarkdownPreview();
@@ -30,8 +43,8 @@ function updateMarkdownPreview() {
 
 // テキストエリアの高さを自動調整する関数
 function autoResizeTextarea() {
-    textarea.style.height = 'auto';
-    textarea.style.height = (textarea.scrollHeight) + 'px';
+  textarea.style.height = 'auto';
+  textarea.style.height = (textarea.scrollHeight) + 'px';
 }
 
 textarea.addEventListener('dragover', handleDragOver, false);
@@ -85,5 +98,3 @@ function insertImageUrlToTextarea(url) {
   textarea.value += markdownImageText;
   updateMarkdownPreview();
 }
-
-const csrfToken = document.querySelector('[name="csrf-token"]').content;

@@ -1,10 +1,65 @@
+html {
+  --base-line-height: 2;
+}
+
 .a-long-text {
-  --base-line-height: 1.9;
+  p,
+  ul,
+  ol,
+  blockquote,
+  pre,
+  table,
+  div,
+  section,
+  aside,
+  dl {
+    margin-block: calc(var(--base-line-height) * 1em);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    line-height: var(--headding-line-height);
+    margin-block: calc(var(--headding-line-height) * 1em / 1.25);
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.25em;
+  }
+  h5 {
+    font-size: 1em;
+  }
+  h6 {
+    font-size: .875rem;
+  }
   p {
     line-height: var(--base-line-height);
-    margin-block: 1.5em;
+  }
+  ol {
+    list-style-type: decimal;
+    margin-left: 2em;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 1.75em;
   }
   li {
     line-height: var(--base-line-height);
+    margin-block: .5em;
+  }
+  blockquote {
+    border-left: solid .5em;
+    padding-left: 1.5em;
   }
 }

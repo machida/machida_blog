@@ -1,10 +1,20 @@
 - unless current_user
-  .container-sm
-    = form_with scope: :session, url: login_path, local: true do |f|
-      = f.label :login, 'Email or Account ID'
-      = f.text_field :login
+  .a-container.is-xs
+    .a-card
+      .a-card__form
+        = form_with scope: :session, url: login_path, local: true, class: 'form' do |f|
+          .form__items
+            .form-item
+              .form-item__header
+                = f.label :login, 'Email or Account ID', class: 'a-form-label'
+              .form-item__body
+                = f.text_field :login, class: 'a-text-input'
 
-      = f.label :password
-      = f.password_field :password
+            .form-item
+              .form-item__header
+                = f.label :password, class: 'a-form-label'
+              .form-item__body
+                = f.password_field :password, class: 'a-text-input'
 
-      = f.submit 'Log in'
+            .form-item
+              = f.submit 'Log in'

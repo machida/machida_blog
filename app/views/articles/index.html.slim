@@ -2,3 +2,9 @@
   h2 すべて
   - @articles.each do |article|
     == render article
+
+- content_for :js do
+  = javascript_import_module_tag 'markdownit'
+  = javascript_import_module_tag 'markdownitEmoji'
+  = javascript_import_module_tag 'markdownitPrism'
+  = javascript_import_module_tag 'articles/show'

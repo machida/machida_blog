@@ -3,8 +3,14 @@
 ul
   - if current_user == @article.user
     li
-      = link_to 'Edit', edit_article_path(@article)
+      = link_to 'Edit', edit_article_path(@article), data: { turbo: false }
     li
       = button_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' }
   li
-    = link_to 'Back', articles_path
+    = link_to 'Back', articles_path, data: { turbo: false }
+
+- content_for :js do
+  = javascript_import_module_tag 'markdownit'
+  = javascript_import_module_tag 'markdownitEmoji'
+  = javascript_import_module_tag 'markdownitPrism'
+  = javascript_import_module_tag 'articles/show'

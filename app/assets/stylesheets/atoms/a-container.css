@@ -1,6 +1,10 @@
 .a-container {
   width: 100%;
   padding-inline: 1rem;
+  margin-inline: auto;
+  &.is-xs {
+    max-width: 480px;
+  }
   &.is-sm {
     max-width: 640px;
   }

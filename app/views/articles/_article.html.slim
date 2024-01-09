@@ -1,9 +1,10 @@
 article(class="is-#{article.status}" id="#{dom_id article}")
   h1
-    = link_to article do
+    = link_to article, data: { turbo: false } do
       = article.title
 
-  = article.body
+  .markdown2html
+    = article.body
   p
     strong user:
     = article.user.account_id

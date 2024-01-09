@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
     if image.save
       render json: { url: url_for(image.file) }
     else
-      # 保存失敗時の処理
+      flash[:alert] = '画像のアップロードに失敗しました。'
     end
   end
 end
