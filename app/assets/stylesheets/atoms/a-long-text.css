@@ -1,0 +1,10 @@
+.a-long-text {
+  --base-line-height: 1.9;
+  p {
+    line-height: var(--base-line-height);
+    margin-block: 1.5em;
+  }
+  li {
+    line-height: var(--base-line-height);
+  }
+}
