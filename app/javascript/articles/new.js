@@ -33,3 +33,57 @@ function autoResizeTextarea() {
     textarea.style.height = 'auto';
     textarea.style.height = (textarea.scrollHeight) + 'px';
 }
+
+textarea.addEventListener('dragover', handleDragOver, false);
+textarea.addEventListener('drop', handleDrop, false);
+
+function handleDragOver(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+function handleDrop(event) {
+  event.stopPropagation();
+  event.preventDefault();
+
+  const files = event.dataTransfer.files; // ドロップされたファイルを取得
+
+  if (files.length > 0) {
+    const file = files[0];
+    if (file.type.match('image.*')) {
+      uploadImage(file); // 画像をアップロードする関数
+    }
+  }
+}
+
+function uploadImage(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  fetch('/images', {
+    method: 'POST',
+    headers: {
+      'X-CSRF-Token': csrfToken
+    },
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    insertImageUrlToTextarea(data.url);
+  })
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
+}
+
+function insertImageUrlToTextarea(url) {
+  const markdownImageText = `![画像](${url})\n`;
+  textarea.value += markdownImageText;
+  updateMarkdownPreview();
+}
+
+const csrfToken = document.querySelector('[name="csrf-token"]').content;

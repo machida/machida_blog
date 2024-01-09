@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resource :site_settings, only: [:edit, :update]
+
+  post '/images', to: 'images#create'
 end
