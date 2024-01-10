@@ -12,13 +12,13 @@ const md = markdownit({
   highlight: function (str, lang) {
     if (lang && Prism.languages[lang]) {
       try {
-        return '<pre class="language-' + lang + '"><code>' +
+        return '<pre class="line-numbers language-' + lang + '"><code>' +
                Prism.highlight(str, Prism.languages[lang], lang) +
                '</code></pre>';
       } catch (__) {}
     }
 
-    return '<pre class="language-none"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    return '<pre class="line-numbers language-none"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
   }
 });
 
@@ -27,11 +27,13 @@ md.use(window.markdownitEmoji);
 document.addEventListener("turbo:load", function() {
   updateMarkdownPreview();
   autoResizeTextarea();
+  Prism.highlightAll();
 });
 
 textarea.addEventListener('input', function() {
   updateMarkdownPreview();
   autoResizeTextarea();
+  Prism.highlightAll();
 });
 
 function updateMarkdownPreview() {

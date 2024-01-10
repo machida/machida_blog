@@ -62,4 +62,8 @@ html {
     border-left: solid .5em;
     padding-left: 1.5em;
   }
+  code {
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
 }
