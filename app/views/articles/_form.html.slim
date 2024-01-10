@@ -6,6 +6,7 @@
       ul
         - article.errors.each do |error|
           li = error.full_message
+  = form.hidden_field :id
 
   .form__items
     .form-item

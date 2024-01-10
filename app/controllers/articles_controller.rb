@@ -42,14 +42,14 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.build(article_params)
     set_status
 
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to article_url(@article), notice: '記事を作成しました。' }
-        format.json { render :show, status: :created, location: @article }
+    if @article.save
+      if @article.status == 'draft'
+        render json: { message: 'Draft saved successfully', id: @article.id }, status: :ok
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        redirect_to article_url(@article), notice: '記事を作成しました。'
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -58,14 +58,14 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     set_status
 
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to article_url(@article), notice: '記事を更新しました。' }
-        format.json { render :show, status: :ok, location: @article }
+    if @article.update(article_params)
+      if @article.status == 'draft'
+        render json: { message: 'Draft updated successfully', id: @article.id }, status: :ok
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        redirect_to article_url(@article), notice: '記事を更新しました。'
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
