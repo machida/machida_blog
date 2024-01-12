@@ -11,13 +11,13 @@
   .form__items
     .form-item
       .form-item__header
-        = form.label 'タイトル', for: 'article_title'
+        = form.label 'タイトル', for: 'article_title', class: 'a-form-label'
       .form-item__body
         = form.text_field :title, class: 'a-text-input'
 
     .form-item
       .form-item__header
-        = form.label '本文', for: 'markdown-input'
+        = form.label '本文', for: 'markdown-input', class: 'a-form-label'
       .form-item__body
         .markdown-editor
           .markdown-editor__columns
@@ -29,10 +29,12 @@
 
     .form-item
       .form-item__header
-        = form.label '公開日時', for: 'article_published_at'
+        = form.label '公開日時', for: 'article_published_at', class: 'a-form-label'
       .form-item__body
         = form.datetime_field :published_at, class: 'a-text-input'
 
-    .form-item
-      = form.submit 'Draft', name: 'save_as_draft'
+  .form__actions
+    .form__action
+      = form.submit 'Draft', name: 'save_as_draft', class: 'a-button is-lg is-primary'
+    .form__action
       = form.submit '公開', name: 'publish'

@@ -1,8 +1,31 @@
-h1 下書き記事一覧
+main.admin-page
+  header.admin-page__header
+    .a-container
+      .admin-page__header-inner
+        h1.admin-page__title
+          | 下書き記事一覧
+  .admin-page__body
+    .a-container.is-md
+      .admin-page__body-inner
+        .articles
+          - if @draft_articles.exists?
+            - @draft_articles.each do |article|
+              article(class="is-#{article.status}" id="#{dom_id article}")
+                h1
+                  = link_to article, data: { turbo: false } do
+                    = article.title
+                p
+                  - if published?(article)
+                    strong 公開日時:
+                    = article.published_at
+                  - else
+                    | 未公開
+          - else
+            | 下書き記事はありません。
 
-.articles
-  - if @draft_articles.exists?
-    - @draft_articles.each do |article|
-      == render article
-  - else
-    | 下書き記事はありません。
+- content_for :js do
+  = javascript_import_module_tag 'markdownit'
+  = javascript_import_module_tag 'markdownitEmoji'
+  = javascript_import_module_tag 'Prism'
+  = javascript_import_module_tag 'prismLineNumbers'
+  = javascript_import_module_tag 'articles/show'

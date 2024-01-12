@@ -13,3 +13,7 @@
   font-weight: 800;
   color: #fff;
 }
+
+.admin-page__body-inner {
+  margin-block: 2rem;
+}

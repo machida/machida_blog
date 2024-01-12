@@ -1,11 +1,22 @@
 .articles
   h2 すべて
   - @articles.each do |article|
-    == render article
+    article(class="is-#{article.status}" id="#{dom_id article}")
+      h1
+        = link_to article, data: { turbo: false } do
+          = article.title
+      p
+        - if published?(article)
+          strong 公開日時:
+          = article.published_at
+        - else
+          | 未公開
+
+
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'
   = javascript_import_module_tag 'markdownitEmoji'
-  = javascript_import_module_tag 'markdownitPrism'
+  = javascript_import_module_tag 'Prism'
   = javascript_import_module_tag 'prismLineNumbers'
   = javascript_import_module_tag 'articles/show'

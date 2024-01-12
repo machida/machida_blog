@@ -1,0 +1,16 @@
+.a-tabs-nav.admin-tool-bar-nav
+  .a-tabs-nav__items
+    - if user_signed_in?
+      .a-tabs-nav__item
+        = link_to new_article_path, class: 'a-tabs-nav__item-link' do
+          | 新規投稿
+      .a-tabs-nav__item
+        = link_to drafts_path, class: 'a-tabs-nav__item-link', data: { turbo: false } do
+          | 下書き記事一覧
+      .a-tabs-nav__item
+        = link_to edit_site_settings_path, class: 'a-tabs-nav__item-link' do
+          | サイト設定
+    - else
+      .a-tabs-nav__item
+        = link_to login_path do
+          | Login

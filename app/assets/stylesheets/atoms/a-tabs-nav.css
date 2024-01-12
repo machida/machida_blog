@@ -1,0 +1,21 @@
+.a-tabs-nav__items {
+  display: flex;
+  gap: .25rem;
+}
+
+.a-tabs-nav__item {
+  min-width: 9rem;
+}
+
+.a-tabs-nav__item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000e0;
+  width: 100%;
+  height: 2.5rem;
+  font-size: .875rem;
+  &.is-active {
+
+  }
+}
