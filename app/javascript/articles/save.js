@@ -40,7 +40,12 @@ function saveArticleAsDraft(csrfToken, articleId) {
   })
   .then(response => response.json())
   .then(data => {
-    console.log('Success:', data);
+    if (!articleId) {
+      // 新規作成の場合、編集ページにリダイレクト
+      window.location.href = `/articles/${data.id}/edit`;
+    } else {
+      console.log('Success:', data);
+    }
   })
   .catch((error) => {
     console.error('Error:', error);

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ('/')
   root 'home#index'
 
+  get 'articles/rss', to: 'articles#feed', defaults: { format: 'rss' }, as: 'articles_feed'
   resources :articles
   get 'drafts', to: 'articles#drafts'
 
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
   resource :site_settings, only: [:edit, :update]
 
   post '/images', to: 'images#create'
+
 end

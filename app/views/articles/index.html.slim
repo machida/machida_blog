@@ -1,6 +1,5 @@
 .articles
-  h2 すべて
-  - @articles.each do |article|
+  - @published_articles.each do |article|
     article(class="is-#{article.status}" id="#{dom_id article}")
       h1
         = link_to article, data: { turbo: false } do
@@ -11,8 +10,6 @@
           = article.published_at
         - else
           | 未公開
-
-
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'

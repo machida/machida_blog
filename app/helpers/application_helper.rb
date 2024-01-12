@@ -11,5 +11,9 @@ module ApplicationHelper
     article.status == 'draft'
   end
 
+  def format_rfc822(datetime)
+    datetime.strftime("%a, %d %b %Y %H:%M:%S %z")
+  end
+
   private
 end

@@ -13,6 +13,14 @@ class ArticlesController < ApplicationController
     @draft_articles = Article.where(status: 'draft')
   end
 
+  def feed
+    @articles = Article.where(status: 'published').order(published_at: :desc).limit(20)
+    Rails.logger.info "Feed action called. Articles count: #{@articles.count}"
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
+  end
+
   # GET /articles/1 or /articles/1.json
   def show
   end
@@ -40,7 +48,7 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = current_user.articles.build(article_params)
-    set_status
+    set_status_and_published_at
 
     if @article.save
       if @article.status == 'draft'
@@ -56,7 +64,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
     @article = Article.find(params[:id])
-    set_status
+    set_status_and_published_at
 
     if @article.update(article_params)
       if @article.status == 'draft'
@@ -83,20 +91,21 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    def set_status
-      if params[:save_as_draft]
-        @article.status = 'draft'
-      elsif params[:publish]
-        @article.status = 'published'
-      end
+  def set_status_and_published_at
+    if params[:save_as_draft]
+      @article.status = 'draft'
+    elsif params[:publish]
+      @article.status = 'published'
+      @article.published_at = Time.current if @article.published_at.blank?
     end
+  end
 
-    def article_params
-      params.require(:article).permit(:title, :body, :published_at)
-    end
+  def article_params
+    params.require(:article).permit(:title, :body, :published_at)
+  end
 end
