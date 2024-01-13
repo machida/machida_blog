@@ -35,6 +35,6 @@
 
   .form__actions
     .form__action
-      = form.submit 'Draft', name: 'save_as_draft', class: 'a-button is-lg is-primary'
+      = form.submit 'Draft', name: 'save_as_draft', class: 'a-button is-lg is-primary', data: { turbo: false }
     .form__action
-      = form.submit '公開', name: 'publish'
+      = form.submit '公開', name: 'publish', data: { turbo: false }

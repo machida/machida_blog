@@ -48,14 +48,10 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = current_user.articles.build(article_params)
-    set_status_and_published_at
+    set_status
 
     if @article.save
-      if @article.status == 'draft'
-        render json: { message: 'Draft saved successfully', id: @article.id }, status: :ok
-      else
-        redirect_to article_url(@article), notice: '記事を作成しました。'
-      end
+      redirect_after_save
     else
       render :new, status: :unprocessable_entity
     end
@@ -64,14 +60,10 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
     @article = Article.find(params[:id])
-    set_status_and_published_at
+    set_status
 
     if @article.update(article_params)
-      if @article.status == 'draft'
-        render json: { message: 'Draft updated successfully', id: @article.id }, status: :ok
-      else
-        redirect_to article_url(@article), notice: '記事を更新しました。'
-      end
+      redirect_after_save
     else
       render :edit, status: :unprocessable_entity
     end
@@ -96,16 +88,27 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def set_status_and_published_at
+  def set_status
     if params[:save_as_draft]
       @article.status = 'draft'
     elsif params[:publish]
       @article.status = 'published'
-      @article.published_at = Time.current if @article.published_at.blank?
+    end
+  end
+
+  def redirect_after_save
+    if @article.status == 'draft'
+      render json: { message: 'Draft saved successfully', id: @article.id }, status: :ok
+    else
+      redirect_to article_url(@article), notice: '記事を作成/更新しました。'
     end
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :published_at)
+    params.require(:article).permit(:title, :body).tap do |permitted_params|
+      if params[:publish] && permitted_params[:published_at].blank?
+        permitted_params[:published_at] = Time.current
+      end
+    end
   end
 end

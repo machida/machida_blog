@@ -5,3 +5,9 @@
     color: #CBD5E1;
   }
 }
+
+.admin-tool-bar__rows {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}

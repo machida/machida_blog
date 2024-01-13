@@ -3,10 +3,14 @@
     .admin-tool-bar__inner
       .admin-tool-bar__rows
         .admin-tool-bar__row
-          h1.admin-tool-bar__logo
-            = site_title
-          = form_with url: logout_path, method: :delete do
-            = submit_tag 'Logout'
+          .admin-tool-bar-header
+            .admin-tool-bar-header__start
+              h1.admin-tool-bar__logo
+                = link_to root_path, class: 'admin-tool-bar__logo-inner' do
+                  = site_title
+            .admin-tool-bar-header__end
+              = form_with url: logout_path, method: :delete do
+                = submit_tag 'Logout'
         .admin-tool-bar__row
           .a-tabs-nav.admin-tool-bar-nav
             .a-tabs-nav__items
