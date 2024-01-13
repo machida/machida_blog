@@ -20,6 +20,6 @@ class SiteSettingsController < ApplicationController
   private
 
   def site_setting_params
-    params.require(:site_setting).permit(:site_title)
+    params.require(:site_setting).permit(:site_title, :site_description, :site_meta_description)
   end
 end

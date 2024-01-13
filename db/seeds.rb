@@ -12,7 +12,11 @@ User.find_or_create_by(email: 'user1@example.com') do |user|
   user.account_id = 'machida'
   user.password = 'password'
   user.password_confirmation = 'password'
-  # 他の属性
 end
 
-SiteSetting.create(site_title: 'ブログタイトル')
+# SiteSetting の作成
+site_setting = SiteSetting.first_or_initialize
+site_setting.site_title = 'ブログタイトル'
+site_setting.site_description = 'ブログの説明' # 新しい属性
+site_setting.site_meta_description = 'ブログのmeta description' # 新しい属性
+site_setting.save!

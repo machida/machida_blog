@@ -1,0 +1,4 @@
+.admin-tool-bar-header {
+  display: flex;
+  justify-content: space-between;
+}

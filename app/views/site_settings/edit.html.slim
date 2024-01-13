@@ -7,9 +7,17 @@ main.admin-page
   .admin-page__body
     .a-container.is-md
       .admin-page__body-inner
-        = form_with model: @site_setting, url: site_settings_path, local: true do |form|
-          .div
-            = form.label :site_title, 'サイトタイトル'
-            = form.text_field :site_title
-
-          = form.submit '更新'
+        = form_with model: @site_setting, url: site_settings_path, local: true, class: 'form' do |form|
+          .form__items
+            .form-item
+              = form.label :site_title, 'サイトタイトル'
+              = form.text_field :site_title
+            .form-item
+              = form.label :site_description
+              = form.text_area :site_description
+            .form-item
+              = form.label :site_meta_description
+              = form.text_area :site_meta_description
+          .form__actions
+            .form__action
+              = form.submit '更新'
