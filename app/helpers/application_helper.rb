@@ -3,6 +3,14 @@ module ApplicationHelper
     SiteSetting.first.site_title
   end
 
+  def site_description
+    SiteSetting.first.site_description
+  end
+
+  def site_meta_description
+    SiteSetting.first.site_meta_description
+  end
+
   def published?(article)
     article.status == 'published'
   end

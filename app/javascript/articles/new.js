@@ -1,4 +1,6 @@
 const csrfToken = document.querySelector('[name="csrf-token"]').content;
+const titleInput = document.getElementById('article_title');
+const titlePreview = document.getElementById('title-preview');
 const textarea = document.getElementById('markdown-input');
 const preview = document.getElementById('markdown-preview');
 const md = markdownit({
@@ -22,9 +24,19 @@ const md = markdownit({
   }
 });
 
+// タイトル入力フィールドに対するイベントリスナーを設定
+titleInput.addEventListener('input', function() {
+  updateTitlePreview();
+});
+
+function updateTitlePreview() {
+  titlePreview.textContent = titleInput.value;
+}
+
 md.use(window.markdownitEmoji);
 
 document.addEventListener("turbo:load", function() {
+  updateTitlePreview();
   updateMarkdownPreview();
   autoResizeTextarea();
   Prism.highlightAll();

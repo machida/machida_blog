@@ -1,7 +1,15 @@
-.form-item + .form-item {
-  margin-top: 1.5rem;
+.form__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.form-item__header + .form-item__body {
-  margin-top: .25rem;
+.form-item__rows {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.form__items + .form__actions {
+  margin-top: 1.5rem;
 }

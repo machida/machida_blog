@@ -10,7 +10,8 @@
                   = site_title
             .admin-tool-bar-header__end
               = form_with url: logout_path, method: :delete do
-                = submit_tag 'Logout'
+                button(type="submit")
+                  | ログアウト
         .admin-tool-bar__row
           .a-tabs-nav.admin-tool-bar-nav
             .a-tabs-nav__items

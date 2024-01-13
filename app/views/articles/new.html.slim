@@ -8,7 +8,6 @@ main.admin-page
     .a-container
       .admin-page__body-inner
         == render 'form', article: @article
-        = link_to 'Back to articles', articles_path
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'

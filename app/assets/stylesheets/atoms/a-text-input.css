@@ -6,4 +6,7 @@
   line-height: 1.6;
   width: 100%;
   letter-spacing: .075em;
+  &.is-sm {
+    height: 10rem;
+  }
 }

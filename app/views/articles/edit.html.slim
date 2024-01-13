@@ -8,8 +8,7 @@ main.admin-page
     .a-container
       .admin-page__body-inner
         == render "form", article: @article
-        => link_to "Show this article", @article, data: { turbo: false }
-        =< link_to "Back to articles", articles_path, data: { turbo: false }
+        => link_to "キャンセル", @article, data: { turbo: false }
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'
