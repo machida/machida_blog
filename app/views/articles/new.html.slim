@@ -1,12 +1,10 @@
-main.admin-page
-  header.admin-page__header
+- content_for(:title, '新規投稿')
+- content_for(:current, 'new_article')
+
+main.page
+  .page__body
     .a-container
-      .admin-page__header-inner
-        h1.admin-page__title
-          | 新規投稿
-  .admin-page__body
-    .a-container
-      .admin-page__body-inner
+      .page__body-inner
         == render 'form', article: @article
 
 - content_for :js do

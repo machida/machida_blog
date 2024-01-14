@@ -1,0 +1,15 @@
+.a-tabs-nav.admin-bar-nav
+  .a-container
+    .a-tabs-nav__items
+      .a-tabs-nav__item
+        = link_to root_path, class: "a-tabs-nav__item-link #{yield(:current) == 'published' ? 'is-active':''}" do
+          | トップページ
+      .a-tabs-nav__item
+        = link_to new_article_path, class: "a-tabs-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}" do
+          | 新規投稿
+      .a-tabs-nav__item
+        = link_to drafts_path, class: "a-tabs-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false } do
+          | 下書き記事一覧
+      .a-tabs-nav__item
+        = link_to edit_site_settings_path, class: "a-tabs-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}" do
+          | サイト設定

@@ -1,12 +1,10 @@
-main.admin-page
-  header.admin-page__header
-    .a-container
-      .admin-page__header-inner
-        h1.admin-page__title
-          | サイト設定の編集
-  .admin-page__body
+- content_for(:title, '記事内容変更')
+- content_for(:current, 'site_settings')
+
+main.page
+  .page__body
     .a-container.is-md
-      .admin-page__body-inner
+      .page__body-inner
         = form_with model: @site_setting, url: site_settings_path, local: true, class: 'form' do |form|
           .form__items
             .form-item

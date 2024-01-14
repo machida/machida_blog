@@ -1,0 +1,12 @@
+.admin-bar {
+  background-color: #d7d7d7;
+  color: #44484d;
+  a {
+    color: #44484d;
+  }
+}
+
+.admin-bar__rows {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,12 +1,9 @@
-main.admin-page
-  header.admin-page__header
+- content_for(:title, '記事内容変更')
+
+main.page
+  .page__body
     .a-container
-      .admin-page__header-inner
-        h1.admin-page__title
-          | 記事内容変更
-  .admin-page__body
-    .a-container
-      .admin-page__body-inner
+      .page__body-inner
         == render "form", article: @article
         => link_to "キャンセル", @article, data: { turbo: false }
 

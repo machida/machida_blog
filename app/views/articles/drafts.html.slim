@@ -1,12 +1,10 @@
-main.admin-page
-  header.admin-page__header
-    .a-container
-      .admin-page__header-inner
-        h1.admin-page__title
-          | 下書き記事一覧
-  .admin-page__body
+- content_for(:title, '下書き記事一覧')
+- content_for(:current, 'drafts')
+
+main.page
+  .page__body
     .a-container.is-md
-      .admin-page__body-inner
+      .page__body-inner
         .articles
           - if @draft_articles.exists?
             - @draft_articles.each do |article|
