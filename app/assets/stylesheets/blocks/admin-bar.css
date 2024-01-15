@@ -1,6 +1,7 @@
 .admin-bar {
   background-color: #d7d7d7;
   color: #44484d;
+  padding-bottom: .5rem;
   a {
     color: #44484d;
   }
@@ -9,4 +10,10 @@
 .admin-bar__rows {
   display: flex;
   flex-direction: column;
+}
+
+.admin-bar-nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

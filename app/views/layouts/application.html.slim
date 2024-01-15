@@ -2,9 +2,12 @@ doctype html
 html
   = render 'head'
   body.is-application
-    - if user_signed_in?
-      = render 'admin_bar'
-    .app-body
-      #flash-messages
-        p style="color: green" = notice
-      = yield
+    .a-wrapper
+      .a-wrapper__start
+        #flash-messages
+          p style="color: green" = notice
+        = yield
+      .a-wrapper__end
+        = render 'footer'
+        - if user_signed_in?
+          = render 'admin_bar'
