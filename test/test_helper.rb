@@ -16,7 +16,7 @@ module ActiveSupport
   class ActionDispatch::IntegrationTest
     # テストユーザーとしてログインする
     def log_in_as(user, password: 'password')
-      post login_path, params: { session: { email: user.email,
+      post login_path, params: { session: { login: user.email,
                                             password: password
                                           } }
     end

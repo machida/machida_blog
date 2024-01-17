@@ -36,15 +36,6 @@ class ArticlesController < ApplicationController
     redirect_to articles_path unless @article.user == current_user
   end
 
-  def update
-    @article = Article.find(params[:id])
-    if @article.user == current_user && @article.update(article_params)
-      # 更新処理
-    else
-      # エラー処理
-    end
-  end
-
   # POST /articles or /articles.json
   def create
     @article = current_user.articles.build(article_params)
@@ -53,6 +44,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_after_save
     else
+      Rails.logger.debug "Article Creation Failed: #{@article.errors.full_messages.join(", ")}"
       render :new, status: :unprocessable_entity
     end
   end
@@ -98,14 +90,15 @@ class ArticlesController < ApplicationController
 
   def redirect_after_save
     if @article.status == 'draft'
-      render json: { message: 'Draft saved successfully', id: @article.id }, status: :ok
+      #render json: { message: 'Draft saved successfully', id: @article.id }, status: :ok
+      redirect_to @article
     else
       redirect_to article_url(@article), notice: '記事を作成/更新しました。'
     end
   end
 
   def article_params
-    params.require(:article).permit(:title, :body).tap do |permitted_params|
+    params.require(:article).permit(:title, :body, :id, :published_at).tap do |permitted_params|
       if params[:publish] && permitted_params[:published_at].blank?
         permitted_params[:published_at] = Time.current
       end

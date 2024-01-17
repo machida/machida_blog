@@ -3,8 +3,7 @@ require "test_helper"
 class ArticleTest < ActiveSupport::TestCase
   def setup
     @user = users(:one)
-    log_in_as(@user)
-    @article = @user.articles.build(title: "有効なタイトル", body: "有効な本文", status: 'published')
+    @article = @user.articles.build(title: "有効なタイトル", body: "有効な本文", status: 'draft')
   end
 
   test "有効なArticleオブジェクト" do

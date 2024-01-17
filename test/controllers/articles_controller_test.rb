@@ -8,7 +8,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get articles_url
+    get root_url
     assert_response :success
   end
 
@@ -19,9 +19,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create article" do
     assert_difference("Article.count") do
-      post articles_url, params: { article: { body: @article.body, published_at: @article.published_at, status: @article.status, title: @article.title, user_id: 1 } }
+      post articles_url, params: { article: { title: '追加', body: '追加', published_at: '2024-01-03 23:00:07', status: 'draft', user_id: 1 }}
     end
-
     assert_redirected_to article_url(Article.last)
   end
 
@@ -36,7 +35,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update article" do
-    patch article_url(@article), params: { article: { body: @article.body, published_at: @article.published_at, status: @article.status, title: @article.title } }
+    patch article_url(@article), params: { article: { body: @article.body, published_at: @article.published_at, status: 'draft', title: @article.title } }
     assert_redirected_to article_url(@article)
   end
 

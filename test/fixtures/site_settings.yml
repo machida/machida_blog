@@ -2,6 +2,10 @@
 
 one:
   site_title: MyString
+  site_description: MyString
+  site_meta_description: MyString
 
 two:
   site_title: MyString
+  site_description: MyString
+  site_meta_description: MyString

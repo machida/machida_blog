@@ -11,7 +11,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create session" do
-    post login_path, params: { session: { email: @user.email, password: 'password' } } # POSTリクエストでセッションを作成
+    post login_path, params: { session: { login: @user.email, password: 'password' } } # POSTリクエストでセッションを作成
     assert_redirected_to root_path # 適切なリダイレクト先に変更する
   end
 

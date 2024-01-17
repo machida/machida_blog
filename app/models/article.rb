@@ -12,7 +12,7 @@ class Article < ApplicationRecord
 
   def published_at_present_if_published
     if status == 'published' && published_at.blank?
-      errors.add(:published_at, "can't be blank when status is 'published'")
+      errors.add(:published_at, '記事を公開するには公開日の設定が必要です。')
     end
   end
 end
