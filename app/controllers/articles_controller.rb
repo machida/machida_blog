@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :id, :published_at).tap do |permitted_params|
+    params.require(:article).permit(:title, :body, :id, :published_at, :status, :user_id).tap do |permitted_params|
       if params[:publish] && permitted_params[:published_at].blank?
         permitted_params[:published_at] = Time.current
       end
