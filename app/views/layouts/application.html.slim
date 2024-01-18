@@ -4,8 +4,9 @@ html
   body.is-application
     .a-wrapper
       .a-wrapper__start
-        #flash-messages
-          p style="color: green" = notice
+        - if notice
+          #flash-messages.toast.show
+            p = notice
         = yield
       .a-wrapper__end
         = render 'footer'

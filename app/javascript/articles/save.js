@@ -41,13 +41,15 @@ function saveArticleAsDraft(csrfToken, articleId) {
   .then(response => response.json())
   .then(data => {
     if (!articleId) {
+      showToast("記事が下書きとして保存されました。");
       // 新規作成の場合、編集ページにリダイレクト
       window.location.href = `/articles/${data.id}/edit`;
     } else {
+      showToast(data.message);
       console.log('Success:', data);
     }
   })
   .catch((error) => {
     console.error('Error:', error);
-  });
+  })
 }

@@ -6,6 +6,7 @@ main.page
         => link_to "キャンセル", @article, data: { turbo: false }
 
 - content_for :js do
+  = javascript_import_module_tag 'shared/toast'
   = javascript_import_module_tag 'markdownit'
   = javascript_import_module_tag 'markdownitEmoji'
   = javascript_import_module_tag 'Prism'

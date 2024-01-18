@@ -1,18 +1,18 @@
 // Markdown-itのインスタンスを作成
 const md = markdownit({
-  html: true /*not default*/,
+  html: true /*not default*/ ,
   xhtmlOut: false,
-  breaks: true /*not default*/,
+  breaks: true /*not default*/ ,
   langPrefix: 'language-',
-  linkify: true /*not default*/,
-  typographer: true /*not default*/,
+  linkify: true /*not default*/ ,
+  typographer: true /*not default*/ ,
   quotes: '“”‘’',
   highlight: function (str, lang) {
     if (lang && Prism.languages[lang]) {
       try {
         return '<pre class="line-numbers language-' + lang + '"><code>' +
-               Prism.highlight(str, Prism.languages[lang], lang) +
-               '</code></pre>';
+          Prism.highlight(str, Prism.languages[lang], lang) +
+          '</code></pre>';
       } catch (__) {}
     }
 

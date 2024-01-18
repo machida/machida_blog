@@ -90,10 +90,16 @@ class ArticlesController < ApplicationController
 
   def redirect_after_save
     if @article.status == 'draft'
-      #render json: { message: 'Draft saved successfully', id: @article.id }, status: :ok
-      redirect_to @article
+      render json: { message: '記事が下書きとして保存されました。', id: @article.id }, status: :ok
     else
-      redirect_to article_url(@article), notice: '記事を作成/更新しました。'
+      # 以前の状態をチェックして適切なメッセージを表示
+      if @article.previous_changes.include?('status') && @article.previous_changes['status'].first == 'draft'
+        # 下書きから公開への変更
+        redirect_to article_url(@article), notice: '記事を公開しました。'
+      else
+        # 既に公開されている記事の更新
+        redirect_to article_url(@article), notice: '記事を更新しました。'
+      end
     end
   end
 
