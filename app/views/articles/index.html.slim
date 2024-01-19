@@ -24,6 +24,8 @@
               - else
                 | 未公開
 
+        = paginate @published_articles
+
 - content_for :js do
   = javascript_import_module_tag 'markdownit'
   = javascript_import_module_tag 'markdownitEmoji'

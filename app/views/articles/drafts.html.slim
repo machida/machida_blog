@@ -18,6 +18,7 @@ main.page
                     = article.published_at
                   - else
                     | 未公開
+            = paginate @draft_articles
           - else
             | 下書き記事はありません。
 

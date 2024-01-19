@@ -4,13 +4,11 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
-    @published_articles = Article.where(status: 'published')
-    @unpublished_articles = Article.where(status: 'draft')
+    @published_articles = Article.where(status: 'published').order("published_at DESC").page(params[:page]).per(1)
   end
 
   def drafts
-    @draft_articles = Article.where(status: 'draft')
+    @draft_articles = Article.where(status: 'draft').order("created_at DESC").page(params[:page]).per(1)
   end
 
   def feed
