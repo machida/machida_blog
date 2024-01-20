@@ -8,21 +8,22 @@
           .main-visual__logo
             = link_to root_path, class: 'main-visual__logo-inner' do
               = site_title
-          = site_description
+          .main-visual__tag-line
+            = site_description
   .page__body
     .a-container.is-md
       .articles
-        - @published_articles.each do |article|
-          article(class="is-#{article.status}" id="#{dom_id article}")
-            h1
-              = link_to article, data: { turbo: false } do
-                = article.title
-            p
-              - if published?(article)
-                strong 公開日時:
-                = article.published_at
-              - else
-                | 未公開
+        .articles__items
+          - @published_articles.each do |article|
+            article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
+              h1.articles-item__title
+                = link_to article, data: { turbo: false }, class: 'articles-item__title-inner' do
+                  = article.title
+              p
+                - if published?(article)
+                  = l article.published_at, format: :long
+                - else
+                  | 未公開
 
         = paginate @published_articles
 

@@ -73,6 +73,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 gem 'dockerfile-rails', '>= 1.6', :group => :development
 gem 'kaminari'
+gem 'rails-i18n'
 gem 'redcarpet'
 gem 'slim-rails'
 gem 'tailwindcss-rails', '~> 2.1'

@@ -1,4 +1,14 @@
 ja:
+  date:
+    formats:
+      default: "%Y年%m月%d日"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒"
   time:
     formats:
-      default: "%Y/%m/%d %H:%M:%S"
+      default: "%Y年%m月%d日 %H時%M分"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒"
+  views:
+    pagination:
+        previous: "« 前"
+        next: "次 »"
+        truncate: "..."

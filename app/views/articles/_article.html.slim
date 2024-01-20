@@ -15,6 +15,6 @@ article.article(class="is-#{article.status}" id="#{dom_id article}")
   p
     - if published?(article)
       strong 公開日時:
-      = article.published_at
+      = l @article.published_at, format: :long
     - else
       | 未公開
