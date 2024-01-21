@@ -1,5 +1,8 @@
-.main-visual {
+.main-visual__inner {
   height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .main-visual__logo {

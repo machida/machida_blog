@@ -1,7 +1,3 @@
-.page {
-  padding-block: 3rem;
-}
-
 .page__body-inner {
-  margin-block: 2rem;
+  padding-block: 3rem;
 }

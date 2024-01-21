@@ -12,20 +12,21 @@
             = site_description
   .page__body
     .a-container.is-md
-      .articles
-        .articles__items
-          - @published_articles.each do |article|
-            article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
-              h1.articles-item__title
-                = link_to article, data: { turbo: false }, class: 'articles-item__title-inner' do
-                  = article.title
-              p
-                - if published?(article)
-                  = l article.published_at, format: :long
-                - else
-                  | 未公開
+      .page__body-inner
+        .articles
+          .articles__items
+            - @published_articles.each do |article|
+              article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
+                h1.articles-item__title
+                  = link_to article, data: { turbo: false }, class: 'articles-item__title-inner' do
+                    = article.title
+                p
+                  - if published?(article)
+                    = l article.published_at, format: :long
+                  - else
+                    | 未公開
 
-        = paginate @published_articles
+          = paginate @published_articles
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'
