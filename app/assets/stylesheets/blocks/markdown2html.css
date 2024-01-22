@@ -13,5 +13,5 @@
 }
 
 .markdown2html.loaded {
-  color: black;
+  color: var(--text-default);
 }

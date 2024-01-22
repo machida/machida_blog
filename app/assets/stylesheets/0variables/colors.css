@@ -1,7 +1,11 @@
 :root {
+  --background: #fff;
+
   --text-default: #1E293B;
   --text-light: #475569;
   --text-muted: #64748B;
 
-  --link-link: #1E40AF;
+  --link-link: #1E3A8A;
+
+  --primary: #0284C7;
 }

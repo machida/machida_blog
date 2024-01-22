@@ -2,32 +2,34 @@
 
 .page
   .page__body
-    article.article(class="is-#{@article.status}" id="#{dom_id @article}")
-      header.article-header
-        .a-container.is-md
-          .article-header__inner
-            h1.article-header__title
-              = link_to @article, class: 'article-header__inner', data: { turbo: false } do
-                = @article.title
-            p
-              - if published?(@article)
-                = l @article.published_at, format: :long
-              - else
-                | 未公開
-      .article-body
-        .a-container.is-md
-          .markdown2html.a-long-text
-            = @article.body
-      footer.article-footer
-        .a-container.is-md
-          ul
-            - if current_user == @article.user
+    .page__body-inner
+      article.article(class="is-#{@article.status}" id="#{dom_id @article}")
+        header.article-header
+          .a-container.is-md
+            .article-header__inner
+              h1.article-header__title
+                = link_to @article, class: 'article-header__inner', data: { turbo: false } do
+                  = @article.title
+              time.article-header__published-at
+                - if published?(@article)
+                  = l @article.published_at, format: :long
+                - else
+                  | 未公開
+        .article-body
+          .a-container.is-md
+            .markdown2html.a-long-text
+              = @article.body
+        footer.article-footer
+          .a-container.is-md
+            ul
+              - if current_user == @article.user
+                li
+                  = link_to 'Edit', edit_article_path(@article), data: { turbo: false }
+                li
+                  = button_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' }
+            ul
               li
-                = link_to 'Edit', edit_article_path(@article), data: { turbo: false }
-              li
-                = button_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' }
-            li
-              = link_to 'Back', articles_path, data: { turbo: false }
+                = link_to 'Back', articles_path, data: { turbo: false }
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'

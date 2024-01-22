@@ -1,0 +1,9 @@
+.form__actions {
+  display: flex;
+  gap: .75rem;
+}
+
+.form__action {
+  min-width: 7.5rem;
+  flex: 1;
+}

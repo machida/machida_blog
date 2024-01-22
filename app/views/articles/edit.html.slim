@@ -3,7 +3,6 @@ main.page
     .a-container
       .page__body-inner
         == render "form", article: @article
-        => link_to "キャンセル", @article, data: { turbo: false }
 
 - content_for :js do
   = javascript_import_module_tag 'shared/toast'
