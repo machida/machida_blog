@@ -1,3 +1,11 @@
+.a-pagination + .articles {
+  margin-top: 2rem;
+}
+
+.articles + .a-pagination {
+  margin-top: 2rem;
+}
+
 .a-pagination__items {
   display: flex;
   gap: .5rem;
