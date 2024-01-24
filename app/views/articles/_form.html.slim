@@ -38,9 +38,9 @@
           = button_tag '公開', type: 'submit', name: 'publish', class: 'a-button is-lg is-primary', data: { turbo: false }
         .form__action
           - if params[:action] == 'edit'
-            => link_to "キャンセル", @article, data: { turbo: false }
+            => link_to "キャンセル", @article, data: { turbo: false }, class: 'a-button is-lg is-text-link'
           - else
-            => link_to "キャンセル", root_path, data: { turbo: false }
+            => link_to "キャンセル", root_path, data: { turbo: false }, class: 'a-button is-lg is-text-link'
 
     .markdown-editor__column
       .markdown-editor__preview

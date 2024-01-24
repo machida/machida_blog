@@ -28,6 +28,11 @@
     --btn-bg: #fff;
     background-color: var(--background);
     color: var(--text-muted);
-    border-color: color-mix(in srgb, var(--btn-bg) 50%, var(--text-muted));
+    border-color: color-mix(in srgb, var(--btn-bg) 20%, var(--text-muted));
+  }
+  &.is-text-link {
+    color: var(--text-muted);
+    text-decoration: underline;
+    border: none;
   }
 }

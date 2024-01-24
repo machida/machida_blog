@@ -8,6 +8,14 @@ class Article < ApplicationRecord
   scope :drafts, -> { where(status: 'draft') }
   belongs_to :user
 
+  def next_article
+    Article.where("published_at > ? AND status = ?", published_at, 'published').order(published_at: :asc).first
+  end
+
+  def previous_article
+    Article.where("published_at < ? AND status = ?", published_at, 'published').order(published_at: :desc).first
+  end
+
   private
 
   def published_at_present_if_published

@@ -18,13 +18,14 @@
           .articles__items
             - @published_articles.each do |article|
               article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
-                h1.articles-item__title
-                  = link_to article, data: { turbo: false }, class: 'articles-item__title-inner' do
+                h2.articles-item__title
+                  = link_to article, data: { turbo: false }, class: 'articles-item__title-inner a-hover-link' do
                     = article.title
-                p
-                  - if published?(article)
-                    = l article.published_at, format: :long
-                  - else
+                - if published?(article)
+                  time.articles-item__published-at(datetime="#{article.published_at}" title="#{l article.published_at}")
+                    = l article.published_at, format: :short
+                - else
+                  p.articles-item__published-at
                     | 未公開
         = paginate @published_articles
 

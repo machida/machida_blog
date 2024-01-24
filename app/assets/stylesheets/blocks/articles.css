@@ -1,10 +1,19 @@
 .articles__items {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .articles-item__title {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 700;
+  line-height: 2rem;
+}
+
+.articles-item__published-at {
+  font-size: .875rem;
+  display: inline-block;
+  margin-top: .5rem;
+  line-height: 1.25rem;
+  color: var(--text-light);
 }

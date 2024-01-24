@@ -1,5 +1,5 @@
 .a-card {
-  border: solid 1px #ccc;
+  border: solid 1px var(--border);
   border-radius: .25rem;
 }
 

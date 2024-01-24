@@ -1,7 +1,7 @@
 article.article(class="is-#{article.status}" id="#{dom_id article}")
   header.article-header
     h1.article-header__title
-      = link_to article, class: 'article-header__inner', data: { turbo: false } do
+      = link_to article, class: 'article-header__inner a-hover-link', data: { turbo: false } do
         = article.title
   .article-body
     .markdown2html.a-long-text

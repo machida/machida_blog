@@ -13,7 +13,7 @@ html {
   section,
   aside,
   dl {
-    margin-block: calc(var(--base-line-height) * 1em);
+    margin-block: 2rem;
   }
   h1,
   h2,
@@ -22,29 +22,35 @@ html {
   h5,
   h6 {
     font-weight: 800;
-    line-height: var(--headding-line-height);
     margin-block: calc(var(--headding-line-height) * 1em / 1.25);
   }
   h1 {
-    font-size: 2.5em;
+    font-size: 2.5rem;
+    line-height: 3rem;
   }
   h2 {
-    font-size: 2em;
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
   h3 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
   h4 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
   h5 {
-    font-size: 1em;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
   h6 {
     font-size: .875rem;
+    line-height: 1.25rem;
   }
   p {
-    line-height: var(--base-line-height);
+    font-size: 1rem;
+    line-height: 2rem;
   }
   ol {
     list-style-type: decimal;
@@ -55,12 +61,14 @@ html {
     margin-left: 1.75em;
   }
   li {
-    line-height: var(--base-line-height);
-    margin-block: .5em;
+    font-size: 1rem;
+    line-height: 2rem;
+    margin-block: .5rem;
   }
   blockquote {
-    border-left: solid .5em;
-    padding-left: 1.5em;
+    border-left: solid .125rem var(--text-muted);
+    padding-left: 1.5rem;
+    font-style: italic;
   }
   code {
     white-space: pre-wrap;
@@ -75,5 +83,11 @@ html {
   a:active {
     text-decoration: none;
     color: var(--link-link)
+  }
+  *:first-child {
+    margin-top: 0;
+  }
+  *:last-child {
+    margin-bottom: 0;
   }
 }

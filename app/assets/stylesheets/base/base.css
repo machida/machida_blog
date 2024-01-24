@@ -3,11 +3,21 @@ html {
   --headding-line-height: 1.4;
   color: var(--text-default);
   font-feature-settings: "palt";
-  letter-spacing: .125em;
+  letter-spacing: .085em;
   font-family: var(--fonts);
 }
 
 
 body {
   color: var(--text-default);
+  background-color: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: .09em;
 }
