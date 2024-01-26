@@ -1,0 +1,215 @@
+.gg-chevron-left {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 100px
+}
+
+.gg-chevron-left::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  transform: rotate(45deg);
+  left: 6px;
+  top: 4px
+}
+
+.gg-chevron-right {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 100px
+}
+
+.gg-chevron-right::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(-45deg);
+  right: 6px;
+  top: 4px
+}
+
+.gg-copyright,
+.gg-copyright::after {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 18px;
+  height: 18px;
+  border: 2px solid;
+  border-radius: 40px
+}
+
+.gg-copyright::after {
+  content: "";
+  position: absolute;
+  border-right-color: transparent;
+  width: 8px;
+  height: 8px;
+  top: 3px;
+  left: 3px;
+  transform: none
+}
+
+.gg-home {
+  background:
+    linear-gradient(to left,
+      currentColor 5px, transparent 0) no-repeat 0 bottom/4px 2px,
+    linear-gradient(to left,
+      currentColor 5px, transparent 0) no-repeat right bottom/4px 2px;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 18px;
+  height: 14px;
+  border: 2px solid;
+  border-top: 0;
+  border-bottom: 0;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: -2px
+}
+
+.gg-home::after,
+.gg-home::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute
+}
+
+.gg-home::before {
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-top-left-radius: 4px;
+  transform: rotate(45deg);
+  top: -5px;
+  border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  left: 0
+}
+
+.gg-home::after {
+  width: 8px;
+  height: 10px;
+  border: 2px solid;
+  border-radius: 100px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+  left: 3px;
+  bottom: 0
+}
+
+.gg-pen {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: rotate(-45deg) scale(var(--ggs, 1));
+  width: 14px;
+  height: 4px;
+  border-right: 2px solid transparent;
+  box-shadow:
+    0 0 0 2px,
+    inset -2px 0 0;
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+  margin-right: -2px
+}
+
+.gg-pen::after,
+.gg-pen::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute
+}
+
+.gg-pen::before {
+  background: currentColor;
+  border-left: 0;
+  right: -6px;
+  width: 3px;
+  height: 4px;
+  border-radius: 1px;
+  top: 0
+}
+
+.gg-pen::after {
+  width: 8px;
+  height: 7px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 7px solid;
+  left: -11px;
+  top: -2px
+}
+
+.gg-trash {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 10px;
+  height: 12px;
+  border: 2px solid transparent;
+  box-shadow:
+    0 0 0 2px,
+    inset -2px 0 0,
+    inset 2px 0 0;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  margin-top: 4px
+}
+
+.gg-trash::after,
+.gg-trash::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute
+}
+
+.gg-trash::after {
+  background: currentColor;
+  border-radius: 3px;
+  width: 16px;
+  height: 2px;
+  top: -4px;
+  left: -5px
+}
+
+.gg-trash::before {
+  width: 10px;
+  height: 4px;
+  border: 2px solid;
+  border-bottom: transparent;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  top: -7px;
+  left: -2px
+}

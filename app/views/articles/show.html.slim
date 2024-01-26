@@ -15,15 +15,30 @@
       article.article(class="is-#{@article.status}" id="#{dom_id @article}")
         header.article-header
           .a-container.is-md
-            .article-header__inner
-              h1.article-header__title
-                = link_to @article, class: 'article-header__inner', data: { turbo: false } do
-                  = @article.title
-              time.article-header__published-at(datetime="#{@article.published_at}" title="#{l @article.published_at}")
-                - if published?(@article)
-                  = l @article.published_at, format: :short
-                - else
-                  | 未公開
+            .article-header__rows
+              .article-header__row
+                h1.article-header__title
+                  = link_to @article, class: 'article-header__inner', data: { turbo: false } do
+                    = @article.title
+              .article-header__row
+                .article-header__metas
+                  - if published?(@article)
+                    time.article-header__published-at(datetime="#{@article.published_at}" title="#{l @article.published_at}")
+                      = l @article.published_at, format: :short
+                  - else
+                    .article-header__published-at.is-unpublished
+                      | 未公開
+
+                  - if current_user == @article.user
+                    nav.article-author-nav
+                      ul.article-author-nav__items
+                        li.article-author-nav__item
+                          = link_to edit_article_path(@article), data: { turbo: false }, class: 'article-author-nav__item-link' do
+                            i.gg-pen.article-author-nav__item-icon
+                        li.article-author-nav__item
+                          = button_to @article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'article-author-nav__item-link' do
+                            i.gg-trash.article-author-nav__item-icon
+
         .article-body
           .a-container.is-md
             .markdown2html.a-long-text
@@ -34,25 +49,17 @@
               ul.article-nav__items
                 li.article-nav__item
                   - if @article.previous_article
-                    = link_to article_path(@article.previous_article), data: { turbo: false }, class: 'article-nav__item-link a-hover-link', title: "#{@article.previous_article.title}" do
+                    = link_to article_path(@article.previous_article), data: { turbo: false }, class: 'article-nav__item-link', title: "#{@article.previous_article.title}" do
                       i.gg-chevron-left.article-nav__item-icon
-                      | 前
                 li.article-nav__item
-                  = link_to 'トップページ', articles_path, data: { turbo: false }, class: 'article-nav__item-link a-hover-link'
+                  = link_to articles_path, data: { turbo: false }, class: 'article-nav__item-link' do
+                    i.gg-home.article-nav__item-icon
+
                 li.article-nav__item
                   - if @article.next_article
-                    = link_to article_path(@article.next_article), data: { turbo: false }, class: 'article-nav__item-link a-hover-link', title: "#{@article.next_article.title}" do
-                      | 次
+                    = link_to article_path(@article.next_article), data: { turbo: false }, class: 'article-nav__item-link', title: "#{@article.next_article.title}" do
                       i.gg-chevron-right.article-nav__item-icon
 
-          - if current_user == @article.user
-            nav.article-author-nav
-              .a-container.is-md
-                ul.article-author-nav__items
-                  li.article-author-nav__item
-                    = link_to '編集', edit_article_path(@article), data: { turbo: false }
-                  li.article-author-nav__item
-                    = button_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' }
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'

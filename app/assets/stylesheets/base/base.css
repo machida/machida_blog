@@ -1,10 +1,8 @@
 html {
-  --base-line-height: 2;
-  --headding-line-height: 1.4;
   color: var(--text-default);
-  font-feature-settings: "palt";
-  letter-spacing: .085em;
   font-family: var(--fonts);
+  font-feature-settings: "palt";
+  letter-spacing: .095em;
 }
 
 
@@ -19,5 +17,5 @@ h3,
 h4,
 h5,
 h6 {
-  letter-spacing: .09em;
+  letter-spacing: .1em;
 }

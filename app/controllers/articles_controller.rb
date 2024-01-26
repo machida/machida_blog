@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def drafts
-    @draft_articles = Article.where(status: 'draft').order("created_at DESC").page(params[:page]).per(1)
+    @draft_articles = Article.where(status: 'draft').order("created_at DESC").page(params[:page]).per(10)
   end
 
   def feed
