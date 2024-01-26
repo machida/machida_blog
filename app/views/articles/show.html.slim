@@ -34,12 +34,16 @@
               ul.article-nav__items
                 li.article-nav__item
                   - if @article.previous_article
-                    = link_to '前の記事', article_path(@article.previous_article), data: { turbo: false }, class: 'article-nav__item-link a-hover-link', title: "#{@article.previous_article.title}"
+                    = link_to article_path(@article.previous_article), data: { turbo: false }, class: 'article-nav__item-link a-hover-link', title: "#{@article.previous_article.title}" do
+                      i.gg-chevron-left.article-nav__item-icon
+                      | 前
                 li.article-nav__item
                   = link_to 'トップページ', articles_path, data: { turbo: false }, class: 'article-nav__item-link a-hover-link'
                 li.article-nav__item
                   - if @article.next_article
-                    = link_to '次の記事', article_path(@article.next_article), data: { turbo: false }, class: 'article-nav__item-link a-hover-link', title: "#{@article.next_article.title}"
+                    = link_to article_path(@article.next_article), data: { turbo: false }, class: 'article-nav__item-link a-hover-link', title: "#{@article.next_article.title}" do
+                      | 次
+                      i.gg-chevron-right.article-nav__item-icon
 
           - if current_user == @article.user
             nav.article-author-nav

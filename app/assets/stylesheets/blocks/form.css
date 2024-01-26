@@ -1,9 +1,11 @@
 .form__actions {
   display: flex;
   gap: .75rem;
+  justify-content: center;
 }
 
 .form__action {
   min-width: 7.5rem;
   flex: 1;
+  max-width: 15rem;
 }

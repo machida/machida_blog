@@ -1,0 +1,7 @@
+.a-form-help {
+  color: var(--text-muted);
+  p {
+    font-size: .875rem;
+    line-height: 1.5rem;
+  }
+}

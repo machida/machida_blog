@@ -32,4 +32,4 @@ main.page
 
           .form__actions
             .form__action
-              = form.submit '更新'
+              = button_tag '更新', type: 'submit', name: 'publish', class: 'a-button is-lg is-primary', data: { turbo: false }

@@ -1,9 +1,9 @@
 .admin-bar {
-  background-color: #d7d7d7;
-  color: #44484d;
+  background-color: #E2E8F0;
+  color: var(--text-light);
   padding-bottom: .5rem;
   a {
-    color: #44484d;
+    color: var(--text-light);
   }
 }
 
