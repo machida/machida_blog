@@ -9,6 +9,7 @@ html
             p = notice
         = yield
       .a-wrapper__end
-        = render 'footer'
+        = render 'footer', site_setting: SiteSetting.first_or_initialize
+
         - if user_signed_in?
           = render 'admin_bar'

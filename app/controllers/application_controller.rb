@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_site_setting
   protect_from_forgery with: :exception
 
   helper_method :current_user, :user_signed_in?, :authenticate_user
@@ -23,5 +24,9 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     redirect_to login_path unless user_signed_in?
+  end
+
+  def set_site_setting
+    @site_setting = SiteSetting.first_or_initialize
   end
 end

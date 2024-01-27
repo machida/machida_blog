@@ -23,5 +23,9 @@ module ApplicationHelper
     datetime.strftime("%a, %d %b %Y %H:%M:%S %z")
   end
 
-  private
+  def display_copyright(site_setting)
+    site_setting.copyright.present? ? site_setting.copyright : site_setting.site_title
+  end
+
+    private
 end
