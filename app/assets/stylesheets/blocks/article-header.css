@@ -79,7 +79,6 @@
   }
 }
 
-
 .article-author-nav__items {
   display: flex;
   gap: 1rem;
@@ -88,7 +87,7 @@
 }
 
 .article-nav__item-icon {
-  transform: scale(.875);
+  --ggs: .875;
 }
 
 .article-author-nav__item {

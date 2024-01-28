@@ -1,19 +1,25 @@
 .admin-bar {
-  background-color: #E2E8F0;
   color: var(--text-light);
   padding-bottom: .5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
   a {
     color: var(--text-light);
   }
 }
 
-.admin-bar__rows {
-  display: flex;
-  flex-direction: column;
-}
-
 .admin-bar-nav__inner {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.admin-bar-nav__item-link {
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  justify-content: center;
   align-items: center;
 }

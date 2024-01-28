@@ -1,4 +1,17 @@
 .admin-bar
-  .admin-bar__rows
-    .admin-bar__row
-      = render('admin_bar_nav')
+  .admin-bar-nav
+    .admin-bar-nav__inner
+      .admin-bar-nav__items
+        .admin-bar-nav__item
+          = link_to new_article_path, class: "admin-bar-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}", title: '新規投稿' do
+            i.gg-math-plus
+        .admin-bar-nav__item
+          = link_to drafts_path, class: "admin-bar-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false }, title: '下書き一覧' do
+            i.gg-view-list
+        .admin-bar-nav__item
+          = link_to edit_site_settings_path, class: "admin-bar-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'サイト設定' do
+            i.cog
+        .admin-bar-nav__item
+          = form_with url: logout_path, method: :delete, class: 'admin-bar-nav__item-link', title: 'ログアウト' do
+            button(type="submit")
+              i.gg-log-out

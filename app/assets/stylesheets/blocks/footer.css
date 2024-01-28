@@ -1,3 +1,6 @@
-.footer {
-  padding-block: 3rem;
+.footer__inner {
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

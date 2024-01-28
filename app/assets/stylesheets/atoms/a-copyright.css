@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: center;
   gap: .25em;
+  font-size: .875rem;
 }
 
 .a-copyright__icon {
-  transform: scale(.5);
+  --ggs: .875;
 }

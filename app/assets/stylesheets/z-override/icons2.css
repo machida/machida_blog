@@ -1,0 +1,36 @@
+.cog {
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  background-image: radial-gradient(white 0 35%, var(--text-default) 35% 70%, transparent 70% 100%), linear-gradient(to right, var(--text-default), var(--text-default));
+  background-size: 70% 70%, 25% 100%;
+}
+
+.cog::before,
+.cog::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, var(--text-default), var(--text-default));
+  background-size: 25% 100%;
+  z-index: -1;
+}
+
+.cog,
+.cog::before,
+.cog::after {
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform-origin: center;
+}
+
+.cog::before {
+  transform: rotate(60deg);
+}
+
+.cog::after {
+  transform: rotate(120deg);
+}

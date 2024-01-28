@@ -2,6 +2,7 @@ footer.footer
   .a-container.is-md
     .footer__inner
       small.a-copyright
+        i.gg-copyright.a-copyright__icon
         - if @site_setting.copyright_url.present?
           = link_to @site_setting.copyright_url, class: 'a-copyright__inner' do
             = display_copyright(@site_setting)
