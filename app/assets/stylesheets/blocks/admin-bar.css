@@ -4,9 +4,6 @@
   position: fixed;
   left: 0;
   top: 0;
-  a {
-    color: var(--text-light);
-  }
 }
 
 .admin-bar-nav__inner {
@@ -22,4 +19,5 @@
   height: 2.75rem;
   justify-content: center;
   align-items: center;
+  color: var(--text-muted)
 }

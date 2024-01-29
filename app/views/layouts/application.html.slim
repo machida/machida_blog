@@ -1,7 +1,7 @@
 doctype html
 html
   = render 'head'
-  body.is-application
+  body.is-application(class="#{user_signed_in? ? 'is-signed-in':''}")
     .a-wrapper
       .a-wrapper__start
         - if notice
