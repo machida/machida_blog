@@ -21,6 +21,7 @@
   display: block;
   font-size: .875rem;
   line-height: 1.25rem;
+  letter-spacing: .07em;
 }
 
 .article-header__published-at.is-unpublished {

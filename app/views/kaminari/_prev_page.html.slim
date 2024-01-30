@@ -1,3 +1,7 @@
 li
-  = link_to_unless current_page.first?, raw(t 'views.pagination.previous'),
-    url, rel: 'prev', remote: remote
+  - if current_page.first?
+    span.a-pagination__item-link.is-prev.is-inactive
+      i.gg-chevron-left
+  - else
+    = link_to url, remote: remote, class: 'a-pagination__item-link is-prev' do
+      i.gg-chevron-left

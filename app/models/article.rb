@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   validates :body, presence: true
   validates :status, inclusion: { in: ['draft', 'published'] }
   validate :published_at_present_if_published
+  validates :meta_description, length: { maximum: 160 }, allow_blank: true
 
   scope :published, -> { where(status: 'published') }
   scope :drafts, -> { where(status: 'draft') }

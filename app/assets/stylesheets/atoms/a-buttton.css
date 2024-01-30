@@ -34,5 +34,8 @@
     color: var(--text-muted);
     text-decoration: underline;
     border: none;
+    display: inline-flex;
+    width: auto;
+    height: auto;
   }
 }

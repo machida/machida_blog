@@ -27,6 +27,20 @@
         .form-item
           .form-item__rows
             .form-item__row
+              = form.label 'サムネイル', class: 'a-form-label', for: 'article_thumbnail'
+            .form-item__row
+              = form.file_field :thumbnail
+
+        .form-item
+          .form-item__rows
+            .form-item__row
+              = form.label 'meta description', class: 'a-form-label', for: 'article_meta_description'
+            .form-item__row
+              = form.text_area :meta_description, class: 'a-text-input is-sm'
+
+        .form-item
+          .form-item__rows
+            .form-item__row
               = form.label '公開日時', for: 'article_published_at', class: 'a-form-label'
             .form-item__row
               = form.datetime_field :published_at, class: 'a-text-input'

@@ -1,3 +1,7 @@
 li.a-pagination__item.is-next
-  = link_to_unless current_page.last?, raw(t 'views.pagination.next'),
-    url, rel: 'next', remote: remote
+  - if current_page.last?
+    span.a-pagination__item-link.is-next.is-inactive
+      i.gg-chevron-right
+  - else
+    = link_to url, rel: 'next', remote: remote, class: 'a-pagination__item-link is-next' do
+      i.gg-chevron-right

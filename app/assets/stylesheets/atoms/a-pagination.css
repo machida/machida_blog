@@ -9,4 +9,29 @@
 .a-pagination__items {
   display: flex;
   gap: .5rem;
+  justify-content: center;
+}
+
+.a-pagination__item-link {
+  display: flex;
+  font-size: .75rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.a-pagination__item-link.is-active {
+  background-color: var(--background-dark);
+  border-radius: 50%;
+}
+
+.a-pagination__item-link.is-inactive {
+  color: var(--text-muted);
+}
+
+.a-pagination__item-link .gg-chevron-right,
+.a-pagination__item-link .gg-chevron-left {
+  --ggs: .625;
 }

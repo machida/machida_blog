@@ -2,4 +2,6 @@
   font-size: 1rem;
   line-height: 1.6;
   font-weight: 700;
+  font-feature-settings: "palt";
+  letter-spacing: .08em;
 }

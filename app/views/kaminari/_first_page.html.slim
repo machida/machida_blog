@@ -1,3 +1,7 @@
 li.a-pagination__item.is-first
-  = link_to_unless current_page.first?, raw(t 'views.pagination.first'),
-    url, remote: remote
+  - if current_page.first?
+    span.a-pagination__item-link.is-inactive
+      i.gg-play-track-prev
+  - else
+    = link_to url, remote: remote, class: 'a-pagination__item-link' do
+      i.gg-play-track-prev

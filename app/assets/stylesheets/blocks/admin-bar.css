@@ -1,9 +1,11 @@
 .admin-bar {
   color: var(--text-light);
+  background-color: var(--background-darker);
   padding-bottom: .5rem;
   position: fixed;
   left: 0;
   top: 0;
+  bottom: 0;
 }
 
 .admin-bar-nav__inner {

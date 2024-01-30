@@ -5,10 +5,13 @@ html {
   letter-spacing: .095em;
 }
 
-
 body {
   color: var(--text-default);
   background-color: var(--background);
+}
+
+body.is-signed-in {
+  padding-left: 2.75rem;
 }
 
 h1,
