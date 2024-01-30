@@ -1,26 +1,34 @@
 - content_for(:title, '下書き記事一覧')
 - content_for(:current, 'drafts')
 
-main.page
+.page
+  .page__header
+    .main-visual
+      .a-container.is-md
+        .main-visual__inner
+          .main-visual__logo
+            = link_to root_path, class: 'main-visual__logo-inner' do
+              = site_title
+          .main-visual__tag-line
+            = site_description
   .page__body
     .a-container.is-md
       .page__body-inner
+        = paginate @draft_articles
         .articles
           - if @draft_articles.exists?
-            - @draft_articles.each do |article|
-              article(class="is-#{article.status}" id="#{dom_id article}")
-                h1
-                  = link_to article, data: { turbo: false } do
-                    = article.title
-                p
-                  - if published?(article)
-                    strong 公開日時:
-                    = article.published_at
-                  - else
+            .articles__items
+              - @draft_articles.each do |article|
+                article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
+                  h2.articles-item__title
+                    = link_to article, data: { turbo: false }, class: 'articles-item__title-inner a-hover-link' do
+                      = article.title
+                  p.articles-item__published-at
                     | 未公開
-            = paginate @draft_articles
           - else
             | 下書き記事はありません。
+
+        = paginate @draft_articles
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'
