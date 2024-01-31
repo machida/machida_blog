@@ -22,13 +22,18 @@
   border-radius: 50%;
 }
 
+a.a-pagination__item-link:hover {
+  text-decoration: underline;
+}
+
 .a-pagination__item-link.is-active {
-  background-color: var(--background-dark);
+  background-color: var(--background-darker);
   border-radius: 50%;
+  pointer-events: none;
 }
 
 .a-pagination__item-link.is-inactive {
-  color: var(--text-muted);
+  color: #CBD5E1;
 }
 
 .a-pagination__item-link .gg-chevron-right,
