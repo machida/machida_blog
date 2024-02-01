@@ -35,6 +35,6 @@ local:
 
 google:
   service: GCS
-  project: your_project
-  credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
-  bucket: your_own_bucket-<%= Rails.env %>
+  project: My First Project
+  credentials: <%= Rails.root.join("gcs_key.json") %>
+  bucket: machida_blog-<%= Rails.env %>
