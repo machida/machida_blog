@@ -2,7 +2,7 @@
   width: 1rem;
   height: 1rem;
   position: relative;
-  background-image: radial-gradient(white 0 35%, var(--text-muted) 35% 70%, transparent 70% 100%), linear-gradient(to right, var(--text-muted), var(--text-muted));
+  background-image: radial-gradient(var(--background-darker) 0 35%, var(--text-muted) 35% 70%, transparent 70% 100%), linear-gradient(to right, var(--text-muted), var(--text-muted));
   background-size: 70% 70%, 25% 100%;
 }
 
