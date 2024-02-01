@@ -22,3 +22,7 @@ h5,
 h6 {
   letter-spacing: .1em;
 }
+
+a {
+  transition: all .2s ease-out;
+}
