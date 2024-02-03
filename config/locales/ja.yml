@@ -1,4 +1,21 @@
 ja:
+  activerecord:
+    models:
+      site_setting: "サイト設定"
+    attributes:
+      site_setting:
+        site_meta_description: "メタディスクリプション"
+    errors:
+      models:
+        site_setting:
+          attributes:
+            site_meta_description:
+              blank: "を入力してください"
+  errors:
+    template:
+      header:
+        one: "%{model}の保存に失敗しました。次の理由により1つのエラーがあります。"
+        other: "%{model}の保存に失敗しました。次の理由により%{count}個のエラーがあります。"
   date:
     formats:
       default: "%Y年%m月%d日"
@@ -10,6 +27,6 @@ ja:
       short: "%Y年%m月%d日"
   views:
     pagination:
-        previous: "« 前"
-        next: "次 »"
-        truncate: "..."
+      previous: "« 前"
+      next: "次 »"
+      truncate: "..."

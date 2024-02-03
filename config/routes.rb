@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resource :site_settings, only: [:edit, :update]
+  get 'site_settings', to: redirect('/site_settings/edit')
 
   post '/images', to: 'images#create'
 

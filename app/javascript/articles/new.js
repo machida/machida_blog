@@ -4,12 +4,12 @@ const titlePreview = document.getElementById('title-preview');
 const textarea = document.getElementById('markdown-input');
 const preview = document.getElementById('markdown-preview');
 const md = markdownit({
-  html: true /*not default*/,
+  html: true,
   xhtmlOut: false,
-  breaks: true /*not default*/,
+  breaks: true,
   langPrefix: 'language-',
-  linkify: true /*not default*/,
-  typographer: true /*not default*/,
+  linkify: true,
+  typographer: true,
   quotes: '“”‘’',
   highlight: function (str, lang) {
     if (lang && Prism.languages[lang]) {
@@ -24,15 +24,6 @@ const md = markdownit({
   }
 });
 
-// タイトル入力フィールドに対するイベントリスナーを設定
-titleInput.addEventListener('input', function() {
-  updateTitlePreview();
-});
-
-function updateTitlePreview() {
-  titlePreview.textContent = titleInput.value;
-}
-
 md.use(window.markdownitEmoji);
 
 document.addEventListener("turbo:load", function() {
@@ -42,6 +33,14 @@ document.addEventListener("turbo:load", function() {
   Prism.highlightAll();
 });
 
+titleInput.addEventListener('input', function() {
+  updateTitlePreview();
+});
+
+function updateTitlePreview() {
+  titlePreview.textContent = titleInput.value;
+}
+
 textarea.addEventListener('input', function() {
   updateMarkdownPreview();
   autoResizeTextarea();
@@ -49,13 +48,10 @@ textarea.addEventListener('input', function() {
 });
 
 function updateMarkdownPreview() {
-  // Convert the Markdown text to HTML
   const html = md.render(textarea.value);
-  // Set the HTML content of the preview element
   preview.innerHTML = html;
 }
 
-// テキストエリアの高さを自動調整する関数
 function autoResizeTextarea() {
   textarea.style.height = 'auto';
   textarea.style.height = (textarea.scrollHeight) + 'px';
@@ -67,19 +63,20 @@ textarea.addEventListener('drop', handleDrop, false);
 function handleDragOver(event) {
   event.stopPropagation();
   event.preventDefault();
-  event.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  event.dataTransfer.dropEffect = 'copy';
 }
 
 function handleDrop(event) {
   event.stopPropagation();
   event.preventDefault();
 
-  const files = event.dataTransfer.files; // ドロップされたファイルを取得
+  const files = event.dataTransfer.files;
 
   if (files.length > 0) {
     const file = files[0];
     if (file.type.match('image.*')) {
-      uploadImage(file); // 画像をアップロードする関数
+      insertTextAtCursor(textarea, 'アップロード中...');
+      uploadImage(file);
     }
   }
 }
@@ -102,13 +99,26 @@ function uploadImage(file) {
     return response.json();
   })
   .then(data => {
-    insertImageUrlToTextarea(data.url);
+    replaceTextAtPosition(textarea, 'アップロード中...', `![画像](${data.url})\n`);
+    updateMarkdownPreview();
   })
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 }
 
-function insertImageUrlToTextarea(url) {
-  const markdownImageText = `![画像](${url})\n`;
-  textarea.value += markdownImageText;
-  updateMarkdownPreview();
+function insertTextAtCursor(textarea, text) {
+  const startPos = textarea.selectionStart;
+  const endPos = textarea.selectionEnd;
+  const beforeText = textarea.value.substring(0, startPos);
+  const afterText = textarea.value.substring(endPos);
+
+  textarea.value = beforeText + text + afterText;
+  textarea.selectionStart = textarea.selectionEnd = startPos + text.length;
+}
+
+function replaceTextAtPosition(textarea, originalText, newText) {
+  const text = textarea.value;
+  const position = text.indexOf(originalText);
+  if (position !== -1) {
+    textarea.value = text.slice(0, position) + newText + text.slice(position + originalText.length);
+  }
 }

@@ -1,7 +1,7 @@
 class SiteSetting < ApplicationRecord
   validates :site_title, presence: true
   validates :site_description, presence: true
-  validates :site_meta_description, presence: true
+  validates :site_meta_description, length: { maximum: 120 }
   validate :validate_copyright_url
 
   private

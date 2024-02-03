@@ -2,18 +2,25 @@ document.addEventListener('keydown', function(event) {
   if ((event.ctrlKey || event.metaKey) && event.key === 's') {
     event.preventDefault();
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const isEditPage = window.location.pathname.includes('/edit'); // 編集ページかどうかを判断
+    const isEditPage = window.location.pathname.includes('/edit');
     let articleId = null;
 
     if (isEditPage) {
-      articleId = document.getElementById('article_id').value; // 編集の場合はIDを取得
+      articleId = document.getElementById('article_id').value;
     }
 
     saveArticleAsDraft(csrfToken, articleId);
   }
 });
 
+let isSaving = false; // 保存中の状態を追跡するフラグ
+
 function saveArticleAsDraft(csrfToken, articleId) {
+  if (isSaving) {
+    return; // 既に保存中であれば、処理を中断する
+  }
+  isSaving = true; // 保存を開始する前にフラグを立てる
+
   const formData = new FormData();
   formData.append('title', document.getElementById('article_title').value);
   formData.append('body', document.getElementById('markdown-input').value);
@@ -40,9 +47,9 @@ function saveArticleAsDraft(csrfToken, articleId) {
   })
   .then(response => response.json())
   .then(data => {
+    isSaving = false; // 保存が完了したらフラグを解除する
     if (!articleId) {
       showToast("記事が下書きとして保存されました。");
-      // 新規作成の場合、編集ページにリダイレクト
       window.location.href = `/articles/${data.id}/edit`;
     } else {
       showToast(data.message);
@@ -51,5 +58,25 @@ function saveArticleAsDraft(csrfToken, articleId) {
   })
   .catch((error) => {
     console.error('Error:', error);
+    isSaving = false; // エラーが発生した場合もフラグを解除する
   })
+}
+
+function showToast(message) {
+  // Toast メッセージを表示するための関数
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 300);
+  }, 3000);
 }
