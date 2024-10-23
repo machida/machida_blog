@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     root to: 'base#index'
     resource :profile, only: [:edit, :update], controller: 'profiles'
     resource :site_settings, only: [:edit, :update], controller: 'site_settings'
-    resources :articles, only: [:new, :create, :edit, :update, :destroy, :index]
+    resources :articles, only: [:new, :create, :edit, :update, :destroy, :index, :show]
   end
 
   resources :articles, only: [:index, :show] do

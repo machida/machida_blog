@@ -1,0 +1,7 @@
+.error-messages
+  h2.error-messages__title
+    = t('errors.template.header', model: object.model_name.human, count: object.errors.count)
+  ul.error-messages__messages
+    - object.errors.full_messages.each do |message|
+      li.error-messages__message
+        = message

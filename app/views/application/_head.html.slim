@@ -2,6 +2,7 @@ head
   title
     = site_title
   meta(name='viewport' content='width=device-width,initial-scale=1')
+  meta(name="turbo-cache-control" content="no-cache")
   = auto_discovery_link_tag(:rss, feed_articles_url(format: 'rss'), title: "#{site_title} RSS")
   = csrf_meta_tags
   = csp_meta_tag

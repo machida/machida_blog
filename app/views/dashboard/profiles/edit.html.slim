@@ -7,12 +7,7 @@ main.page
     = render 'dashboard_header'
 
   - if @user.errors.any?
-    .error-message
-      h2
-        = t('errors.template.header', model: User.model_name.human, count: @user.errors.count)
-      ul
-        - @user.errors.full_messages.each do |message|
-          li = message
+    = render 'shared/error_messages', object: @user
 
   .page__body
     .a-container.is-xs

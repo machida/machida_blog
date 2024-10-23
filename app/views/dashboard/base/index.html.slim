@@ -48,7 +48,7 @@ main.page
                 .dashboard-nav__item-label
                   | ユーザー設定
             .dashboard-nav__item
-              = form_with url: logout_path, method: :delete do
+              = form_with url: logout_path, method: :delete, data: { turbo: false } do
                 button.dashboard-nav__item-link(type="submit" title="ログアウト")
                   .dashboard-nav__item-icon
                     i.gg-log-out

@@ -2,14 +2,7 @@
 
 .page
   .page__header
-    .main-visual
-      .a-container.is-md
-        .main-visual__inner
-          .main-visual__logo
-            = link_to root_path, class: 'main-visual__logo-inner' do
-              = site_title
-          .main-visual__tag-line
-            = site_description
+    = render 'main_visual'
   .page__body
     .a-container.is-md
       .page__body-inner
@@ -27,6 +20,7 @@
                 - else
                   p.articles-item__published-at
                     | 未公開
+                    | （作成日: #{l article.created_at, format: :short}）
         = paginate @published_articles
 
 - content_for :js do

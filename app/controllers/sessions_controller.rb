@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      flash[:notice] = 'ログインしました。'
       redirect_to root_path
     else
       flash.now[:alert] = 'ログイン情報が正しくありません。'
@@ -19,12 +20,14 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    reset_session
     @current_user = nil
+
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'ログアウトしました。' }
       format.turbo_stream do
         flash.now[:notice] = 'ログアウトしました。'
+        render turbo_stream: turbo_stream.update('flash', partial: 'shared/flash')
         redirect_to root_path
       end
     end

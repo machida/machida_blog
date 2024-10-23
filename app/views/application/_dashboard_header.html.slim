@@ -36,7 +36,7 @@
                   .dashboard-header-nav__item-icon
                     i.gg-boy
               .dashboard-header-nav__item
-                = form_with url: logout_path, method: :delete, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
+                = form_with url: logout_path, method: :delete, data: { turbo: false }, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
                   button(type="submit")
                     .dashboard-header-nav__item-icon
                       i.gg-log-out

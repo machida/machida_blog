@@ -20,6 +20,7 @@ main.page
                       = article.title
                   p.articles-item__published-at
                     | 未公開
+                    | （作成日: #{l article.created_at, format: :short}）
           = paginate @draft_articles
         - else
           p 下書き記事はありません。

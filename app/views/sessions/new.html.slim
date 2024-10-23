@@ -1,17 +1,8 @@
+- content_for(:body_classes, 'dashboard')
+
 main.page
   header.page__header
-    .dashboard-header
-      .a-container
-        .dashboard-header__inner
-          nav.dashboard-breadcrumbs
-            ol.dashboard-breadcrumbs__items
-              li.dashboard-breadcrumbs__item
-                = link_to dashboard_root_path, class: 'dashboard-breadcrumbs__item-link' do
-                  | ダッシュボード
-                i.gg-format-slash
-              li.dashboard-breadcrumbs__item
-                = link_to dashboard_articles_path(status: 'draft'), class: 'dashboard-breadcrumbs__item-link' do
-                  | ログイン
+    = render 'dashboard_header'
   .page__body
     .page__body-inner
       - unless current_user
@@ -22,7 +13,7 @@ main.page
                 .form__items
                   .form-item
                     .form-item__header
-                      = f.label :login, 'Email or Account ID', class: 'a-form-label'
+                      = f.label :login, 'Account ID', class: 'a-form-label'
                     .form-item__body
                       = f.text_field :login, class: 'a-text-input'
 

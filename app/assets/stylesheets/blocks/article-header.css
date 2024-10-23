@@ -21,6 +21,9 @@
   }
 }
 
+.is-draft .article-header__title-text {
+  color: var(--text-muted);
+}
 
 .article-header__rows {
   display: flex;

@@ -1,11 +1,6 @@
-= form_with model: @article, local: true, class: 'form' do |form|
+= form_with model: [:dashboard, @article], local: true, class: 'form' do |form|
   - if @article.errors.any?
-    .error-message
-      h2
-        = t('errors.template.header', model: Article.model_name.human, count: @article.errors.count)
-      ul
-        - @article.errors.full_messages.each do |message|
-          li = message
+    = render 'shared/error_messages', object: @article
 
   .markdown-editor__columns
     .markdown-editor__column
@@ -62,7 +57,7 @@
           .article-header
             .article-header__inner
               h1.article-header__title
-                span.article-header__inner#title-preview
+                span.article-header__title-text#title-preview
           .article-body
             .markdown-editor__preview.a-long-text
               #markdown-preview

@@ -1,4 +1,6 @@
 - if flash.any?
-  - flash.each do |type, message|
-    .flash(class="is-#{type}")
-      = message
+  turbo-frame#flash
+    #flash-messages(data-controller="flash")
+      - flash.each do |type, message|
+        .flash(class="is-#{type}")
+          = message
