@@ -1,17 +1,29 @@
-.admin-bar
-  .admin-bar-nav
-    .admin-bar-nav__inner
-      .admin-bar-nav__items
-        .admin-bar-nav__item
-          = link_to new_article_path, class: "admin-bar-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}", title: '新規投稿' do
-            i.gg-math-plus
-        .admin-bar-nav__item
-          = link_to drafts_path, class: "admin-bar-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false }, title: '下書き一覧' do
-            i.gg-view-list
-        .admin-bar-nav__item
-          = link_to edit_site_settings_path, class: "admin-bar-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'サイト設定' do
-            i.cog
-        .admin-bar-nav__item
-          = form_with url: logout_path, method: :delete, class: 'admin-bar-nav__item-link', title: 'ログアウト' do
-            button(type="submit")
-              i.gg-log-out
+.admin-bar(data-controller="toggle-class")
+  .admin-bar__inner(data-toggle-class-target="target")
+    button.admin-bar__pull(data-action="click->toggle-class#toggle")
+      span.is-shown-then-active
+        i.gg-close
+      span.is-hidden-then-active
+        i.gg-arrow-right
+    .dashboard-header-nav
+      .dashboard-header-nav__inner
+        .dashboard-header-nav__items
+          .dashboard-header-nav__item
+            = link_to dashboard_root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ダッシュボード' do
+              i.gg-lock
+          .dashboard-header-nav__item
+            = link_to new_dashboard_article_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}", title: '新規投稿' do
+              i.gg-math-plus
+          .dashboard-header-nav__item
+            = link_to dashboard_articles_path(status: 'draft'), class: "dashboard-header-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false }, title: '下書き一覧' do
+              i.gg-view-list
+          .dashboard-header-nav__item
+            = link_to edit_dashboard_site_settings_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'サイト設定' do
+              i.gg-website
+          .dashboard-header-nav__item
+            = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー設定' do
+              i.gg-boy
+          .dashboard-header-nav__item
+            = form_with url: logout_path, method: :delete, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
+              button(type="submit")
+                i.gg-log-out

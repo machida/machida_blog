@@ -1,3 +1,14 @@
+.page__body {
+  container-type: inline-size;
+  container-name: page__body;
+}
+
 .page__body-inner {
   padding-block: 4rem;
+}
+
+@container page__body (max-width: 400px) {
+  .page__body-inner {
+    padding-block: 3rem;
+  }
 }

@@ -1,7 +1,7 @@
 doctype html
 html
   = render 'head'
-  body.is-application(class="#{user_signed_in? ? 'is-signed-in':''}")
+  body.is-application(class="#{user_signed_in? ? 'is-signed-in':''} #{'is-' + yield(:body_classes) + '-page' || ''}")
     .a-wrapper
       .a-wrapper__start
         - if notice
@@ -12,4 +12,3 @@ html
         = render 'footer', site_setting: SiteSetting.first_or_initialize
 
         - if user_signed_in?
-          = render 'admin_bar'

@@ -33,7 +33,7 @@
                     nav.article-author-nav
                       ul.article-author-nav__items
                         li.article-author-nav__item
-                          = link_to edit_article_path(@article), data: { turbo: false }, class: 'article-author-nav__item-link' do
+                          = link_to edit_dashboard_article_path(@article), data: { turbo: false }, class: 'article-author-nav__item-link' do
                             i.gg-pen.article-author-nav__item-icon
                         li.article-author-nav__item
                           = button_to @article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'article-author-nav__item-link' do

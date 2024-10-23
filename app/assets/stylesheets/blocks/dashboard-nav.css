@@ -1,0 +1,34 @@
+.dashboard-nav__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem
+}
+
+.dashboard-nav__item {
+  min-width: 200px;
+  flex: 1;
+}
+
+.dashboard-nav__item-link {
+  border: solid 1px var(--background-darker);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+  border-radius: .5rem;
+}
+
+.dashboard-nav__item-link:hover {
+  background-color: var(--background-dark);
+}
+
+.dashboard-nav__item-icon {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

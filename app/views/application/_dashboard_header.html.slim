@@ -1,0 +1,42 @@
+.dashboard-header
+  .a-container
+    .dashboard-header__inner
+      .dashboard-header__start
+        nav.dashboard-breadcrumbs
+          ol.dashboard-breadcrumbs__items
+            li.dashboard-breadcrumbs__item
+              = link_to dashboard_root_path, class: 'dashboard-breadcrumbs__item-link' do
+                | ダッシュボード
+              i.gg-format-slash
+            li.dashboard-breadcrumbs__item
+              = link_to dashboard_articles_path(status: 'draft'), class: 'dashboard-breadcrumbs__item-link' do
+                | 下書き一覧
+      .dashboard-header__end
+        nav.dashboard-header-nav
+          .dashboard-header-nav__inner
+            .dashboard-header-nav__items
+              .dashboard-header-nav__item
+                = link_to dashboard_root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ダッシュボード' do
+                  .dashboard-header-nav__item-icon
+                    i.gg-lock
+              .dashboard-header-nav__item
+                = link_to new_dashboard_article_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}", title: '新規投稿' do
+                  .dashboard-header-nav__item-icon
+                    i.gg-math-plus
+              .dashboard-header-nav__item
+                = link_to dashboard_articles_path(status: 'draft'), class: "dashboard-header-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false }, title: '下書き一覧' do
+                  .dashboard-header-nav__item-icon
+                    i.gg-view-list
+              .dashboard-header-nav__item
+                = link_to edit_dashboard_site_settings_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'サイト設定' do
+                  .dashboard-header-nav__item-icon
+                    i.gg-website
+              .dashboard-header-nav__item
+                = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー設定' do
+                  .dashboard-header-nav__item-icon
+                    i.gg-boy
+              .dashboard-header-nav__item
+                = form_with url: logout_path, method: :delete, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
+                  button(type="submit")
+                    .dashboard-header-nav__item-icon
+                      i.gg-log-out

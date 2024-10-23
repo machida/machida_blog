@@ -8,16 +8,22 @@ Rails.application.routes.draw do
   # Defines the root path route ('/')
   root 'articles#index'
 
-  get 'articles/rss', to: 'articles#feed', defaults: { format: 'rss' }, as: 'articles_feed'
-  resources :articles
-  get 'drafts', to: 'articles#drafts'
+  namespace :dashboard do
+    root to: 'base#index'
+    resource :profile, only: [:edit, :update], controller: 'profiles'
+    resource :site_settings, only: [:edit, :update], controller: 'site_settings'
+    resources :articles, only: [:new, :create, :edit, :update, :destroy, :index]
+  end
+
+  resources :articles, only: [:index, :show] do
+    collection do
+      get :feed, defaults: { format: 'rss' }
+    end
+  end
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-
-  resource :site_settings, only: [:edit, :update]
-  get 'site_settings', to: redirect('/site_settings/edit')
 
   post '/images', to: 'images#create'
 

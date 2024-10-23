@@ -1,0 +1,52 @@
+- content_for(:title, 'プロフィール編集')
+- content_for(:current, 'profiles')
+- content_for(:body_classes, 'dashboard')
+
+main.page
+  header.page__header
+    = render 'dashboard_header'
+
+  - if @user.errors.any?
+    .error-message
+      h2
+        = t('errors.template.header', model: User.model_name.human, count: @user.errors.count)
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+
+  .page__body
+    .a-container.is-xs
+      .page__body-inner
+        = form_with model: @user, url: dashboard_profile_path, method: :patch, local: true, class: 'form' do |f|
+          .form__items
+            .form-item
+              .form-item__rows
+                .form-item__row
+                  = f.label :email, 'メールアドレス', class: 'a-form-label'
+                .form-item__row
+                  = f.email_field :email, class: 'a-text-input'
+
+            .form-item
+              .form-item__rows
+                .form-item__row
+                  = f.label :account_id, 'アカウントID', class: 'a-form-label'
+                .form-item__row
+                  = f.text_field :account_id, class: 'a-text-input'
+
+            .form-item
+              .form-item__rows
+                .form-item__row
+                  = f.label :password, '新しいパスワード（任意）', class: 'a-form-label'
+                .form-item__row
+                  = f.password_field :password, class: 'a-text-input'
+
+            .form-item
+              .form-item__rows
+                .form-item__row
+                  = f.label :password_confirmation, 'パスワード確認', class: 'a-form-label'
+                .form-item__row
+                  = f.password_field :password_confirmation, class: 'a-text-input'
+
+          .form__actions
+            .form__action
+              = button_tag '更新', type: 'submit', name: 'publish', class: 'a-button is-lg is-primary', data: { turbo: false }

@@ -1,47 +1,47 @@
-= form_with(model: article, class: 'form') do |form|
-  - if article.errors.any?
-    div style='color: red'
+= form_with model: @article, local: true, class: 'form' do |form|
+  - if @article.errors.any?
+    .error-message
       h2
-        = t('errors.template.header', model: SiteSetting.model_name.human, count: @site_setting.errors.count)
+        = t('errors.template.header', model: Article.model_name.human, count: @article.errors.count)
       ul
-        - @site_setting.errors.full_messages.each do |message|
+        - @article.errors.full_messages.each do |message|
           li = message
-  = form.hidden_field :id
+
   .markdown-editor__columns
     .markdown-editor__column
       .form__items
         .form-item
           .form-item__rows
             .form-item__row
-              = form.label 'タイトル', for: 'article_title', class: 'a-form-label'
+              = form.label :title, 'タイトル', class: 'a-form-label'
             .form-item__row
               = form.text_field :title, class: 'a-text-input'
 
         .form-item
           .form-item__rows
             .form-item__row
-              = form.label '本文', for: 'markdown-input', class: 'a-form-label'
+              = form.label :body, '本文', class: 'a-form-label'
             .form-item__row
-              = form.text_area :body, id: 'markdown-input', class: 'a-text-input markdown-editor__input'
+              = form.text_area :body, class: 'a-text-input markdown-editor__input', id: 'markdown-input'
 
         .form-item
           .form-item__rows
             .form-item__row
-              = form.label 'サムネイル', class: 'a-form-label', for: 'article_thumbnail'
+              = form.label :thumbnail, 'サムネイル', class: 'a-form-label'
             .form-item__row
               = form.file_field :thumbnail
 
         .form-item
           .form-item__rows
             .form-item__row
-              = form.label 'meta description', class: 'a-form-label', for: 'article_meta_description'
+              = form.label :meta_description, 'meta description', class: 'a-form-label'
             .form-item__row
               = form.text_area :meta_description, class: 'a-text-input is-sm'
 
         .form-item
           .form-item__rows
             .form-item__row
-              = form.label '公開日時', for: 'article_published_at', class: 'a-form-label'
+              = form.label :published_at, '公開日時', class: 'a-form-label'
             .form-item__row
               = form.datetime_field :published_at, class: 'a-text-input'
 
@@ -50,11 +50,11 @@
           = button_tag 'Draft', type: 'submit', name: 'save_as_draft', class: 'a-button is-lg is-secondary'
         .form__action
           = button_tag '公開', type: 'submit', name: 'publish', class: 'a-button is-lg is-primary', data: { turbo: false }
-        .form__action
+        .form__action.is-sub
           - if params[:action] == 'edit'
-            => link_to "キャンセル", @article, data: { turbo: false }, class: 'a-button is-lg is-text-link'
+            = link_to 'キャンセル', dashboard_article_path(@article), data: { turbo: false }, class: 'a-button is-lg is-text-link'
           - else
-            => link_to "キャンセル", root_path, data: { turbo: false }, class: 'a-button is-lg is-text-link'
+            = link_to 'キャンセル', dashboard_articles_path, data: { turbo: false }, class: 'a-button is-lg is-text-link'
 
     .markdown-editor__column
       .markdown-editor__preview

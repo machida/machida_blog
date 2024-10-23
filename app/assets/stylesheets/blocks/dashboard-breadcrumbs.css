@@ -1,0 +1,21 @@
+.dashboard-breadcrumbs {
+  font-size: .875rem;
+  line-height: 1.25;
+}
+
+.dashboard-breadcrumbs__items {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-breadcrumbs__item-link {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem
+}

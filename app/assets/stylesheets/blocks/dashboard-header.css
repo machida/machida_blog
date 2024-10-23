@@ -1,0 +1,18 @@
+.dashboard-header {
+  background-color: var(--background-darker);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.dashboard-header .a-container {
+  padding-inline: 1rem;
+}
+
+.dashboard-header__inner {
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

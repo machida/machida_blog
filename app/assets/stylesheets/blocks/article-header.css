@@ -1,8 +1,26 @@
+.article {
+  container-type: inline-size;
+  container-name: article;
+}
+
+.article-header {
+  container-type: inline-size;
+  container-name: article-header;
+}
+
 .article-header__title {
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 3.25rem;
 }
+
+@container article-header (max-width: 400px) {
+  .article-header__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
 
 .article-header__rows {
   display: flex;
@@ -41,6 +59,12 @@
 
 .article-footer {
   margin-top: 6rem;
+}
+
+@container page__body (max-width: 400px) {
+  .article-footer {
+    margin-top: 4rem;
+  }
 }
 
 .article-nav__items {

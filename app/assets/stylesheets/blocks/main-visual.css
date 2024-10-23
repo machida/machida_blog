@@ -1,8 +1,21 @@
+.main-visual {
+  container-type: inline-size;
+  container-name: main-visual;
+}
+
 .main-visual__inner {
   height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  container-type: inline-size;
+  container-name: main-visual__inner;
+}
+
+@container main-visual (max-width: 400px) {
+  .main-visual__inner {
+    height: 20rem;
+  }
 }
 
 .main-visual__logo {
@@ -14,10 +27,26 @@
   letter-spacing: 0;
 }
 
+@container main-visual (max-width: 400px) {
+  .main-visual__logo {
+    font-size: 3rem;
+    line-height: 4.25rem;
+  }
+}
+
 .main-visual__tag-line {
   text-align: center;
   justify-content: center;
   font-size: 1rem;
   line-height: 1.5rem;
   margin-top: .25rem;
+  letter-spacing: .125em;
+  text-indent: .125em;
+}
+
+@container main-visual (max-width: 400px) {
+  .main-visual__tag-line {
+    font-size: .875rem;
+    line-height: 1.25rem;
+  }
 }

@@ -1,6 +1,17 @@
+.footer {
+  container-type: inline-size;
+  container-name: footer;
+}
+
 .footer__inner {
-  height: 8rem;
+  height: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@container footer (max-width: 400px) {
+  .footer__inner {
+    height: 6rem;
+  }
 }

@@ -23,7 +23,10 @@ class SessionsController < ApplicationController
     @current_user = nil
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'ログアウトしました。' }
-      format.turbo_stream { redirect_to root_path, flash.now[:notice] = 'ログアウトしました。' }
+      format.turbo_stream do
+        flash.now[:notice] = 'ログアウトしました。'
+        redirect_to root_path
+      end
     end
   end
 end

@@ -1,6 +1,17 @@
+.markdown-editor {
+  container-type: inline-size;
+  container-name: markdown-editor;
+}
+
 .markdown-editor__columns {
   display: flex;
   gap: 2rem
+}
+
+@container markdown-editor (max-width: 680px) {
+  .markdown-editor__columns {
+    flex-direction: column;
+  }
 }
 
 .markdown-editor__column {

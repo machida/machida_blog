@@ -10,8 +10,8 @@ body {
   background-color: var(--background);
 }
 
-body.is-signed-in {
-  padding-left: 2.75rem;
+body.is-dashboard-page {
+  padding-top: 2.75rem;
 }
 
 h1,

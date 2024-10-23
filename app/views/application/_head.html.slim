@@ -2,7 +2,7 @@ head
   title
     = site_title
   meta(name='viewport' content='width=device-width,initial-scale=1')
-  = auto_discovery_link_tag(:rss, articles_feed_url(format: 'rss'), title: "#{site_title} RSS")
+  = auto_discovery_link_tag(:rss, feed_articles_url(format: 'rss'), title: "#{site_title} RSS")
   = csrf_meta_tags
   = csp_meta_tag
   = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'

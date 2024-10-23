@@ -1,18 +1,23 @@
-- content_for(:title, '記事内容変更')
+- content_for(:title, 'サイト設定')
 - content_for(:current, 'site_settings')
+- content_for(:body_classes, 'dashboard')
 
 main.page
+  header.page__header
+    = render 'dashboard_header'
+
   - if @site_setting.errors.any?
-    div style='color: red'
+    .error-message
       h2
         = t('errors.template.header', model: SiteSetting.model_name.human, count: @site_setting.errors.count)
       ul
         - @site_setting.errors.full_messages.each do |message|
           li = message
+
   .page__body
-    .a-container.is-md
+    .a-container.is-sm
       .page__body-inner
-        = form_with model: @site_setting, url: site_settings_path, local: true, class: 'form' do |form|
+        = form_with model: @site_setting, url: dashboard_site_settings_path, method: :patch, local: true, class: 'form' do |form|
           .form__items
             .form-item
               .form-item__rows
@@ -20,12 +25,14 @@ main.page
                   = form.label :site_title, 'サイトタイトル', class: 'a-form-label'
                 .form-item__row
                   = form.text_field :site_title, class: 'a-text-input'
+
             .form-item
               .form-item__rows
                 .form-item__row
                   = form.label :site_description, 'サイトの説明', class: 'a-form-label'
                 .form-item__row
                   = form.text_area :site_description, class: 'a-text-input is-sm'
+
             .form-item
               .form-item__rows
                 .form-item__row
@@ -36,12 +43,14 @@ main.page
                   .a-form-help
                     p
                       | 120字以内を目安に。
+
             .form-item
               .form-item__rows
                 .form-item__row
                   = form.label :copyright, 'Copyright', class: 'a-form-label'
                 .form-item__row
                   = form.text_field :copyright, class: 'a-text-input'
+
             .form-item
               .form-item__rows
                 .form-item__row

@@ -1,20 +1,36 @@
-- unless current_user
-  .a-container.is-xs
-    .a-card
-      .a-card__form
-        = form_with scope: :session, url: login_path, local: true, class: 'form' do |f|
-          .form__items
-            .form-item
-              .form-item__header
-                = f.label :login, 'Email or Account ID', class: 'a-form-label'
-              .form-item__body
-                = f.text_field :login, class: 'a-text-input'
+main.page
+  header.page__header
+    .dashboard-header
+      .a-container
+        .dashboard-header__inner
+          nav.dashboard-breadcrumbs
+            ol.dashboard-breadcrumbs__items
+              li.dashboard-breadcrumbs__item
+                = link_to dashboard_root_path, class: 'dashboard-breadcrumbs__item-link' do
+                  | ダッシュボード
+                i.gg-format-slash
+              li.dashboard-breadcrumbs__item
+                = link_to dashboard_articles_path(status: 'draft'), class: 'dashboard-breadcrumbs__item-link' do
+                  | ログイン
+  .page__body
+    .page__body-inner
+      - unless current_user
+        .a-container.is-xs
+          .a-card
+            .a-card__form
+              = form_with scope: :session, url: login_path, local: true, class: 'form' do |f|
+                .form__items
+                  .form-item
+                    .form-item__header
+                      = f.label :login, 'Email or Account ID', class: 'a-form-label'
+                    .form-item__body
+                      = f.text_field :login, class: 'a-text-input'
 
-            .form-item
-              .form-item__header
-                = f.label :password, class: 'a-form-label'
-              .form-item__body
-                = f.password_field :password, class: 'a-text-input'
+                  .form-item
+                    .form-item__header
+                      = f.label :password, class: 'a-form-label'
+                    .form-item__body
+                      = f.password_field :password, class: 'a-text-input'
 
-            .form-item
-              = f.submit 'Log in'
+                  .form-item
+                    = f.submit 'ログイン', class: 'a-button is-lg is-primary'
