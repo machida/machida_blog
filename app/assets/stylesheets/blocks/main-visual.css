@@ -1,15 +1,8 @@
-.main-visual {
-  container-type: inline-size;
-  container-name: main-visual;
-}
-
 .main-visual__inner {
   height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  container-type: inline-size;
-  container-name: main-visual__inner;
 }
 
 @container main-visual (max-width: 400px) {

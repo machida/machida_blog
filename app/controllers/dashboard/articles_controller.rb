@@ -1,5 +1,7 @@
 module Dashboard
   class ArticlesController < ApplicationController
+    include ActionView::RecordIdentifier
+
     before_action :authenticate_user
     before_action :set_article, only: [:edit, :update, :destroy]
 
@@ -51,20 +53,42 @@ module Dashboard
     end
 
     def destroy
-      if @article.user == current_user
-        @article.destroy
-        redirect_to dashboard_articles_path, notice: '記事を削除しました。'
+      if @article.user == current_user && @article.destroy
+        respond_to do |format|
+          format.html do
+            flash[:notice] = '記事を削除しました。'
+            redirect_to dashboard_articles_path(status: 'draft')
+          end
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.append('flash', partial: 'shared/flash', locals: { notice: '記事を削除しました。' }) + turbo_stream.redirect_to(dashboard_articles_path(status: 'draft'))
+          end
+        end
       else
-        redirect_to dashboard_articles_path, alert: '他のユーザーの記事を削除することはできません。'
+        respond_to do |format|
+          format.html do
+            redirect_to dashboard_articles_path(status: 'draft'), alert: '他のユーザーの記事を削除することはできません。'
+          end
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.append('flash', partial: 'shared/flash', locals: { alert: '他のユーザーの記事を削除することはできません。' })
+          end
+        end
       end
     end
 
     private
 
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.find_by(id: params[:id])
       if @article.nil?
-        redirect_to dashboard_articles_path, alert: '記事が見つかりません。'
+        respond_to do |format|
+          format.html do
+            redirect_to dashboard_articles_path(status: 'draft'), alert: '記事が見つかりません。'
+          end
+          format.turbo_stream do
+            flash.now[:alert] = '記事が見つかりません。'
+            render turbo_stream: turbo_stream.replace('flash', partial: 'shared/flash')
+          end
+        end
       end
     end
 
@@ -82,7 +106,7 @@ module Dashboard
       if @article.status == 'draft'
         redirect_to dashboard_articles_path(status: 'draft'), notice: '記事が下書きとして保存されました。'
       else
-        redirect_to edit_dashboard_article_path(@article), notice: '記事を公開しました。'
+        redirect_to article_path(@article), notice: '記事を公開しました。'
       end
     end
 

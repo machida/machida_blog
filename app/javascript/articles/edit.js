@@ -5,7 +5,7 @@ const textarea = document.getElementById('markdown-input');
 const preview = document.getElementById('markdown-preview');
 
 import { updateTitlePreview, updateMarkdownPreview, autoResizeTextarea } from './markdownSetup.js';
-import { handleDragOver, handleDrop } from './imageUpload.js';
+import { handleDragOver, handleDrop, handlePaste } from './imageUpload.js';
 
 // Markdown-It の初期化
 const md = markdownit({
@@ -55,3 +55,9 @@ textarea.addEventListener('drop', (event) => {
       updateMarkdownPreview(textarea, preview, md);
   });
 }, false);
+
+textarea.addEventListener('paste', (event) => {
+  handlePaste(event, textarea, csrfToken, () => {
+    updateMarkdownPreview(textarea, preview, md);
+  });
+});

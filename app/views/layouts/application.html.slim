@@ -4,11 +4,10 @@ html
   body.is-application(class="#{user_signed_in? ? 'is-signed-in':''} #{'is-' + yield(:body_classes) + '-page' || ''}")
     .a-wrapper
       .a-wrapper__start
-        - if notice
-          #flash-messages.toast.show
-            p = notice
+        - if flash.any?
+          - if notice
+            #flash-messages.toast.show
+              p = notice
         = yield
       .a-wrapper__end
         = render 'footer', site_setting: SiteSetting.first_or_initialize
-
-        - if user_signed_in?

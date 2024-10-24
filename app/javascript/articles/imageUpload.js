@@ -1,4 +1,3 @@
-// imageUpload.js
 export function handleDragOver(event) {
   event.stopPropagation();
   event.preventDefault();
@@ -10,12 +9,22 @@ export function handleDrop(event, textarea, csrfToken, callback) {
   event.preventDefault();
 
   const files = event.dataTransfer.files;
-
   if (files.length > 0) {
     const file = files[0];
     if (file.type.match('image.*')) {
       insertTextAtCursor(textarea, 'アップロード中...');
-      uploadImage(file, textarea, csrfToken, callback); // コールバックを引数として渡す
+      uploadImage(file, textarea, csrfToken, callback);
+    }
+  }
+}
+
+export function handlePaste(event, textarea, csrfToken, callback) {
+  const items = (event.clipboardData || window.clipboardData).items;
+  for (const item of items) {
+    if (item.type.indexOf('image') !== -1) {
+      const file = item.getAsFile();
+      insertTextAtCursor(textarea, 'アップロード中...');
+      uploadImage(file, textarea, csrfToken, callback);
     }
   }
 }
@@ -39,7 +48,7 @@ function uploadImage(file, textarea, csrfToken, callback) {
   })
   .then(data => {
     replaceTextAtPosition(textarea, 'アップロード中...', `![画像](${data.url})\n`);
-    if (callback) callback(); // コールバックの呼び出し
+    if (callback) callback();
   })
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 }

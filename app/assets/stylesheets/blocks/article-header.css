@@ -1,13 +1,3 @@
-.article {
-  container-type: inline-size;
-  container-name: article;
-}
-
-.article-header {
-  container-type: inline-size;
-  container-name: article-header;
-}
-
 .article-header__title {
   font-size: 2.5rem;
   font-weight: 800;
@@ -46,8 +36,8 @@
 }
 
 .article-header__published-at.is-unpublished {
-  background-color: var(--background-dark);
-  height: 1.75rem;
+  background-color: var(--background-darker);
+  height: 1.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;

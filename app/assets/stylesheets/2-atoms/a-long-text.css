@@ -3,11 +3,6 @@ html {
 }
 
 .a-long-text {
-  container-type: inline-size;
-  container-name: a-long-text;
-}
-
-.a-long-text {
   p,
   ul,
   ol,

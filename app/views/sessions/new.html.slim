@@ -2,7 +2,7 @@
 
 main.page
   header.page__header
-    = render 'dashboard_header'
+    = render 'dashboard_header', current_page_title: 'ログイン'
   .page__body
     .page__body-inner
       - unless current_user

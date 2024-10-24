@@ -2,8 +2,6 @@
   display: flex;
   gap: .75rem;
   justify-content: center;
-  container-type: inline-size;
-  container-name: form__actions;
 }
 
 .form__action {

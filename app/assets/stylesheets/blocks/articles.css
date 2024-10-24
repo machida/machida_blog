@@ -4,10 +4,25 @@
   gap: 3rem;
 }
 
+@container page__body (max-width: 400px) {
+  .articles__items {
+    gap: 2rem;
+  }
+}
+
+
 .articles-item__title {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 2rem;
+}
+
+@container page__body (max-width: 400px) {
+  .articles-item__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+  }
 }
 
 .articles-item__published-at {
@@ -16,4 +31,12 @@
   margin-top: .5rem;
   line-height: 1.25rem;
   color: var(--text-light);
+}
+
+@container page__body (max-width: 400px) {
+  .articles-item__published-at {
+    font-size: .75rem;
+    margin-top: .25rem;
+    line-height: 1rem;
+  }
 }

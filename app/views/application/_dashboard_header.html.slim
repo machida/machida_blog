@@ -1,6 +1,6 @@
-.dashboard-header
+.dashboard-header(data-controller="toggle-class")
   .a-container
-    .dashboard-header__inner
+    .dashboard-header__inner(data-toggle-class-target="target")
       .dashboard-header__start
         nav.dashboard-breadcrumbs
           ol.dashboard-breadcrumbs__items
@@ -9,12 +9,21 @@
                 | ダッシュボード
               i.gg-format-slash
             li.dashboard-breadcrumbs__item
-              = link_to dashboard_articles_path(status: 'draft'), class: 'dashboard-breadcrumbs__item-link' do
-                | 下書き一覧
+              = link_to request.original_url, class: 'dashboard-breadcrumbs__item-link' do
+                = current_page_title
       .dashboard-header__end
+        button.admin-bar__pull(data-action="click->toggle-class#toggle")
+          span.is-shown-then-active
+            i.gg-close
+          span.is-hidden-then-active
+            i.gg-menu
         nav.dashboard-header-nav
           .dashboard-header-nav__inner
             .dashboard-header-nav__items
+              .dashboard-header-nav__item
+                = link_to root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ホーム' do
+                  .dashboard-header-nav__item-icon
+                    i.gg-home
               .dashboard-header-nav__item
                 = link_to dashboard_root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ダッシュボード' do
                   .dashboard-header-nav__item-icon

@@ -1,6 +1,5 @@
-// markdownSetup.js
 export function updateTitlePreview(titleInput, titlePreview) {
-  titlePreview.textContent = titleInput.value;
+  titlePreview.textContent = titleInput.value || '無題の記事';
 }
 
 export function updateMarkdownPreview(textarea, preview, md) {
@@ -10,5 +9,5 @@ export function updateMarkdownPreview(textarea, preview, md) {
 
 export function autoResizeTextarea(textarea) {
   textarea.style.height = 'auto';
-  textarea.style.height = (textarea.scrollHeight) + 'px';
+  textarea.style.height = `${textarea.scrollHeight}px`;
 }

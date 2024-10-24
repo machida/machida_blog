@@ -1,0 +1,59 @@
+.main-visual {
+  container-type: inline-size;
+  container-name: main-visual;
+}
+
+.markdown-editor {
+  container-type: inline-size;
+  container-name: markdown-editor;
+}
+
+.page {
+  container-type: inline-size;
+  container-name: page;
+}
+
+.page__body {
+  container-type: inline-size;
+  container-name: page__body;
+}
+
+.dashboard-header {
+  container-type: inline-size;
+  container-name: dashboard-header;
+}
+
+.a-long-text {
+  container-type: inline-size;
+  container-name: a-long-text;
+}
+
+.article {
+  container-type: inline-size;
+  container-name: article;
+}
+
+.article-header {
+  container-type: inline-size;
+  container-name: article-header;
+}
+
+.dashboard-nav {
+  container-type: inline-size;
+  container-name: dashboard-nav;
+}
+
+.dashboard-nav__item {
+  container-type: inline-size;
+  container-name: dashboard-nav__item;
+}
+
+.footer {
+  container-type: inline-size;
+  container-name: footer;
+}
+
+.form__actions {
+  container-type: inline-size;
+  container-name: form__actions;
+}

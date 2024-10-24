@@ -30,7 +30,7 @@
                           = link_to edit_dashboard_article_path(@article), data: { turbo: false }, class: 'article-author-nav__item-link' do
                             i.gg-pen.article-author-nav__item-icon
                         li.article-author-nav__item
-                          = button_to @article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'article-author-nav__item-link' do
+                          = button_to dashboard_article_path(@article), method: :delete, data: { confirm: 'Are you sure?', turbo: false }, class: 'article-author-nav__item-link' do
                             i.gg-trash.article-author-nav__item-icon
 
         .article-body

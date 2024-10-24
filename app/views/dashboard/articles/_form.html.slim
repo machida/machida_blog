@@ -1,4 +1,4 @@
-= form_with model: [:dashboard, @article], local: true, class: 'form' do |form|
+= form_with model: [:dashboard, @article], local: true, class: 'markdown-editor form' do |form|
   - if @article.errors.any?
     = render 'shared/error_messages', object: @article
 

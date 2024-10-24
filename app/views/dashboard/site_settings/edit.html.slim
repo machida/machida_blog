@@ -4,7 +4,7 @@
 
 main.page
   header.page__header
-    = render 'dashboard_header'
+    = render 'dashboard_header', current_page_title: 'サイト設定'
 
   - if @site_setting.errors.any?
     .error-message
