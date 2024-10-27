@@ -27,5 +27,13 @@ module ApplicationHelper
     site_setting.copyright.present? ? site_setting.copyright : site_setting.site_title
   end
 
-    private
+  def dashboard_page?
+    params[:controller].start_with?('dashboard/')
+  end
+
+  def render_error_messages(object)
+    render 'shared/error_messages', object: object if object&.errors&.any?
+  end
+
+  private
 end

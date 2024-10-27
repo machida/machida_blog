@@ -1,27 +1,23 @@
 - content_for(:current, 'published')
 
-.page
-  .page__header
-    = render 'main_visual'
-  .page__body
-    .a-container.is-md
-      .page__body-inner
-        = paginate @published_articles
-        .articles
-          .articles__items
-            - @published_articles.each do |article|
-              article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
-                h2.articles-item__title
-                  = link_to article, data: { turbo: false }, class: 'articles-item__title-inner a-hover-link' do
-                    = article.title
-                - if published?(article)
-                  time.articles-item__published-at(datetime="#{article.published_at}" title="#{l article.published_at}")
-                    = l article.published_at, format: :short
-                - else
-                  p.articles-item__published-at
-                    | 未公開
-                    | （作成日: #{l article.created_at, format: :short}）
-        = paginate @published_articles
+.a-container.is-md
+  .page__body-inner
+    = paginate @published_articles
+    .articles
+      .articles__items
+        - @published_articles.each do |article|
+          article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
+            h2.articles-item__title
+              = link_to article, data: { turbo: false }, class: 'articles-item__title-inner a-hover-link' do
+                = article.title
+            - if published?(article)
+              time.articles-item__published-at(datetime="#{article.published_at}" title="#{l article.published_at}")
+                = l article.published_at, format: :short
+            - else
+              p.articles-item__published-at
+                | 未公開
+                | （作成日: #{l article.created_at, format: :short}）
+    = paginate @published_articles
 
 - content_for :js do
   = javascript_import_module_tag 'markdownit'

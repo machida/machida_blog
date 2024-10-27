@@ -1,47 +1,40 @@
 - content_for(:title, 'プロフィール編集')
 - content_for(:current, 'profiles')
 - content_for(:body_classes, 'dashboard')
+- content_for(:current_page_title, 'プロフィール編集')
 
-main.page
-  header.page__header
-    = render 'dashboard_header', current_page_title: 'プロフィール編集'
+.a-container.is-xs
+  .page__body-inner
+    = form_with model: @user, url: dashboard_profile_path, method: :patch, local: true, class: 'form' do |f|
+      .form__items
+        .form-item
+          .form-item__rows
+            .form-item__row
+              = f.label :email, 'メールアドレス', class: 'a-form-label'
+            .form-item__row
+              = f.email_field :email, class: 'a-text-input'
 
-  - if @user.errors.any?
-    = render 'shared/error_messages', object: @user
+        .form-item
+          .form-item__rows
+            .form-item__row
+              = f.label :account_id, 'アカウントID', class: 'a-form-label'
+            .form-item__row
+              = f.text_field :account_id, class: 'a-text-input'
 
-  .page__body
-    .a-container.is-xs
-      .page__body-inner
-        = form_with model: @user, url: dashboard_profile_path, method: :patch, local: true, class: 'form' do |f|
-          .form__items
-            .form-item
-              .form-item__rows
-                .form-item__row
-                  = f.label :email, 'メールアドレス', class: 'a-form-label'
-                .form-item__row
-                  = f.email_field :email, class: 'a-text-input'
+        .form-item
+          .form-item__rows
+            .form-item__row
+              = f.label :password, '新しいパスワード（任意）', class: 'a-form-label'
+            .form-item__row
+              = f.password_field :password, class: 'a-text-input'
 
-            .form-item
-              .form-item__rows
-                .form-item__row
-                  = f.label :account_id, 'アカウントID', class: 'a-form-label'
-                .form-item__row
-                  = f.text_field :account_id, class: 'a-text-input'
+        .form-item
+          .form-item__rows
+            .form-item__row
+              = f.label :password_confirmation, 'パスワード確認', class: 'a-form-label'
+            .form-item__row
+              = f.password_field :password_confirmation, class: 'a-text-input'
 
-            .form-item
-              .form-item__rows
-                .form-item__row
-                  = f.label :password, '新しいパスワード（任意）', class: 'a-form-label'
-                .form-item__row
-                  = f.password_field :password, class: 'a-text-input'
-
-            .form-item
-              .form-item__rows
-                .form-item__row
-                  = f.label :password_confirmation, 'パスワード確認', class: 'a-form-label'
-                .form-item__row
-                  = f.password_field :password_confirmation, class: 'a-text-input'
-
-          .form__actions
-            .form__action
-              = button_tag '更新', type: 'submit', name: 'publish', class: 'a-button is-lg is-primary', data: { turbo: false }
+      .form__actions
+        .form__action
+          = button_tag '更新', type: 'submit', name: 'publish', class: 'a-button is-lg is-primary', data: { turbo: false }

@@ -8,10 +8,11 @@ module Dashboard
 
     def update
       if @site_setting.update(site_setting_params)
-        redirect_to edit_dashboard_site_settings_path, notice: 'サイト設定が更新されました。'
+        flash[:notice] = 'サイト設定が更新されました。'
+        redirect_to dashboard_root_path
       else
-        flash.now[:alert] = '設定の更新に失敗しました。'
-        render :edit
+        flash.now[:alert] = @site_setting.errors.full_messages.to_sentence
+        render :edit, status: :unprocessable_entity
       end
     end
 

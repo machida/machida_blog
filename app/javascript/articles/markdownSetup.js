@@ -1,5 +1,5 @@
 export function updateTitlePreview(titleInput, titlePreview) {
-  titlePreview.textContent = titleInput.value || '無題の記事';
+  titlePreview.textContent = titleInput.value || '';
 }
 
 export function updateMarkdownPreview(textarea, preview, md) {

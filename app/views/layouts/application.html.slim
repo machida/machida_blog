@@ -1,13 +1,22 @@
 doctype html
 html
   = render 'head'
-  body.is-application(class="#{user_signed_in? ? 'is-signed-in':''} #{'is-' + yield(:body_classes) + '-page' || ''}")
+  body.is-application(class="#{user_signed_in? ? 'is-signed-in':''} #{dashboard_page? ? 'is-dashboard-page' : 'is-public-page'}")
     .a-wrapper
       .a-wrapper__start
-        - if flash.any?
-          - if notice
-            #flash-messages.toast.show
-              p = notice
-        = yield
+        - if flash
+          #flash-messages.toast.show
+            - flash.to_hash.with_indifferent_access.slice(:notice, :alert).each do |type, message|
+              .flash(class="is-#{type}")
+                = message
+        main.page
+          header.page__header
+            - if dashboard_page?
+              = render 'dashboard_header', current_page_title: yield(:current_page_title)
+            - else
+              = render 'main_visual'
+          .page__body
+            = render_error_messages(flash[:object])
+            = yield
       .a-wrapper__end
         = render 'footer', site_setting: SiteSetting.first_or_initialize

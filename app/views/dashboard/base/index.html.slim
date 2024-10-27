@@ -1,56 +1,46 @@
 - content_for(:title, "ダッシュボード")
 - content_for(:current, "dashboard")
 - content_for(:body_classes, "dashboard")
+- content_for(:current_page_title, 'ダッシュボード')
 
-main.page
-  header.page__header
-    .dashboard-header
-      .a-container
-        .dashboard-header__inner
-          nav.dashboard-breadcrumbs
-            ol.dashboard-breadcrumbs__items
-              li.dashboard-breadcrumbs__item
-                = link_to dashboard_root_path, class: "dashboard-breadcrumbs__item-link" do
-                  | ダッシュボード
-  .page__body
-    .a-container.is-md
-      .page__body-inner
-        nav.dashboard-nav
-          .dashboard-nav__items
-            .dashboard-nav__item
-              = link_to dashboard_root_path, class: "dashboard-nav__item-link", title: "ダッシュボード" do
-                .dashboard-nav__item-icon
-                  i.gg-lock
-                .dashboard-nav__item-label
-                  | ダッシュボード
-            .dashboard-nav__item
-              = link_to new_dashboard_article_path, class: "dashboard-nav__item-link", title: "新規投稿" do
-                .dashboard-nav__item-icon
-                  i.gg-math-plus
-                .dashboard-nav__item-label
-                  | 新規投稿
-            .dashboard-nav__item
-              = link_to dashboard_articles_path(status: 'draft'), class: "dashboard-nav__item-link", data: { turbo: false }, title: "下書き一覧" do
-                .dashboard-nav__item-icon
-                  i.gg-view-list
-                .dashboard-nav__item-label
-                  | 下書き一覧
-            .dashboard-nav__item
-              = link_to edit_dashboard_site_settings_path, class: "dashboard-nav__item-link", title: "サイト設定" do
-                .dashboard-nav__item-icon
-                  i.gg-website
-                .dashboard-nav__item-label
-                  | サイト設定
-            .dashboard-nav__item
-              = link_to edit_dashboard_profile_path, class: "dashboard-nav__item-link", title: "ユーザー設定" do
-                .dashboard-nav__item-icon
-                  i.gg-boy
-                .dashboard-nav__item-label
-                  | ユーザー設定
-            .dashboard-nav__item
-              = form_with url: logout_path, method: :delete, data: { turbo: false } do
-                button.dashboard-nav__item-link(type="submit" title="ログアウト")
-                  .dashboard-nav__item-icon
-                    i.gg-log-out
-                  .dashboard-nav__item-label
-                    | ログアウト
+.a-container.is-md
+  .page__body-inner
+    nav.dashboard-nav
+      .dashboard-nav__items
+        .dashboard-nav__item
+          = link_to dashboard_root_path, class: "dashboard-nav__item-link", title: "ダッシュボード" do
+            .dashboard-nav__item-icon
+              i.gg-lock
+            .dashboard-nav__item-label
+              | ダッシュボード
+        .dashboard-nav__item
+          = link_to new_dashboard_article_path, class: "dashboard-nav__item-link", title: "新規投稿" do
+            .dashboard-nav__item-icon
+              i.gg-math-plus
+            .dashboard-nav__item-label
+              | 新規投稿
+        .dashboard-nav__item
+          = link_to dashboard_articles_path(status: 'draft'), class: "dashboard-nav__item-link", data: { turbo: false }, title: "下書き一覧" do
+            .dashboard-nav__item-icon
+              i.gg-view-list
+            .dashboard-nav__item-label
+              | 下書き一覧
+        .dashboard-nav__item
+          = link_to edit_dashboard_site_settings_path, class: "dashboard-nav__item-link", title: "サイト設定" do
+            .dashboard-nav__item-icon
+              i.gg-website
+            .dashboard-nav__item-label
+              | サイト設定
+        .dashboard-nav__item
+          = link_to edit_dashboard_profile_path, class: "dashboard-nav__item-link", title: "ユーザー設定" do
+            .dashboard-nav__item-icon
+              i.gg-boy
+            .dashboard-nav__item-label
+              | ユーザー設定
+        .dashboard-nav__item
+          = form_with url: logout_path, method: :delete, data: { turbo: false } do
+            button.dashboard-nav__item-link(type="submit" title="ログアウト")
+              .dashboard-nav__item-icon
+                i.gg-log-out
+              .dashboard-nav__item-label
+                | ログアウト

@@ -1,33 +1,29 @@
-- content_for(:title, '下書き記事一覧')
+- content_for(:title, '下書き一覧')
 - content_for(:current, 'drafts')
 - content_for(:body_classes, 'dashboard')
+- content_for(:current_page_title, '下書き一覧')
 
-main.page
-  header.page__header
-    = render 'dashboard_header', current_page_title: '下書き一覧'
-
-  .page__body
-    .a-container.is-md
-      .page__body-inner
-        - if @draft_articles.present?
-          = paginate @draft_articles
-          .articles
-            .articles__items
-              - @draft_articles.each do |article|
-                article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
-                  h2.articles-item__title
-                    = link_to article, data: { turbo: false }, class: 'articles-item__title-inner a-hover-link' do
-                      = article.title
-                  p.articles-item__published-at
-                    | 未公開
-                    | （作成日: #{l article.created_at, format: :short}）
-          = paginate @draft_articles
-        - else
-          p 下書き記事はありません。
+.a-container.is-md
+  .page__body-inner
+    - if @draft_articles.present?
+      = paginate @draft_articles
+      .articles
+        .articles__items
+          - @draft_articles.each do |article|
+            article.articles-item(class="is-#{article.status}" id="#{dom_id article}")
+              h2.articles-item__title
+                = link_to article, data: { turbo: false }, class: 'articles-item__title-inner a-hover-link' do
+                  = article.title
+              p.articles-item__published-at
+                | 未公開
+                | （作成日: #{l article.created_at, format: :short}）
+      = paginate @draft_articles
+    - else
+      p 下書き記事はありません。
 
 - content_for :js do
-  = javascript_import_module_tag 'markdownit'
-  = javascript_import_module_tag 'markdownitEmoji'
-  = javascript_import_module_tag 'Prism'
-  = javascript_import_module_tag 'prismLineNumbers'
-  = javascript_import_module_tag 'articles/show'
+= javascript_import_module_tag 'markdownit'
+= javascript_import_module_tag 'markdownitEmoji'
+= javascript_import_module_tag 'Prism'
+= javascript_import_module_tag 'prismLineNumbers'
+= javascript_import_module_tag 'articles/show'
