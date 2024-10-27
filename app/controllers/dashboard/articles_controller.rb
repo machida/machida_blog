@@ -28,7 +28,7 @@ module Dashboard
       if @article.save
         redirect_after_save(@article)
       else
-        flash.now[:alert] = @article.errors.full_messages.to_sentence
+        flash.now[:alert] = @article.errors.full_messages
         render :new, status: :unprocessable_entity
       end
     end
@@ -45,7 +45,7 @@ module Dashboard
       else
         # エラーメッセージを表示
         Rails.logger.info "Validation failed: #{@article.errors.full_messages.join(', ')}"
-        flash.now[:alert] = @article.errors.full_messages.to_sentence
+        flash.now[:alert] = @article.errors.full_messages
         render :edit, status: :unprocessable_entity
       end
     end
@@ -84,9 +84,11 @@ module Dashboard
       respond_to do |format|
         format.html do
           if article.status == 'draft'
-            redirect_to dashboard_articles_path(status: 'draft'), notice: '記事が下書きとして保存されました。'
+            flash[:notice] = '記事が下書きとして保存されました。'
+            redirect_to dashboard_articles_path(status: 'draft')
           else
-            redirect_to article_path(article), notice: '記事を公開しました。'
+            flash[:notice] = '記事を公開しました。'
+            redirect_to article_path(article)
           end
         end
 

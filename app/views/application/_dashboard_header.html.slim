@@ -41,7 +41,7 @@
                   .dashboard-header-nav__item-icon
                     i.gg-website
               .dashboard-header-nav__item
-                = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー設定' do
+                = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー情報' do
                   .dashboard-header-nav__item-icon
                     i.gg-boy
               .dashboard-header-nav__item

@@ -3,6 +3,10 @@ module Dashboard
     before_action :authenticate_user
     before_action :set_site_setting, only: [:edit, :update]
 
+    def show
+      redirect_to edit_dashboard_site_settings_path
+    end
+
     def edit
     end
 
@@ -11,7 +15,7 @@ module Dashboard
         flash[:notice] = 'サイト設定が更新されました。'
         redirect_to dashboard_root_path
       else
-        flash.now[:alert] = @site_setting.errors.full_messages.to_sentence
+        flash.now[:alert] = @site_setting.errors.full_messages
         render :edit, status: :unprocessable_entity
       end
     end

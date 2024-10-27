@@ -1,9 +1,18 @@
 ja:
+  actions:
+    create: "作成"
+    update: "更新"
+    destroy: "削除"
+    default: "操作"
+
   activerecord:
     models:
       site_setting: "サイト設定"
+      article: "記事"
+      profile: "ユーザー情報"
     attributes:
       site_setting:
+        site_description: "サイトの説明"
         site_meta_description: "メタディスクリプション"
     errors:
       models:

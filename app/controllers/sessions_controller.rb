@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def new
     if user_signed_in?
-      redirect_to root_path, notice: 'すでにログインしています。'
+      flash[:notice] = 'すでにログインしています。'
+      redirect_to root_path
     end
   end
 
@@ -24,7 +25,11 @@ class SessionsController < ApplicationController
     @current_user = nil
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'ログアウトしました。' }
+      format.html do
+        flash[:notice] = 'ログアウトしました。'
+        redirect_to root_path
+      end
+
       format.turbo_stream do
         flash.now[:notice] = 'ログアウトしました。'
         render turbo_stream: turbo_stream.update('flash', partial: 'shared/flash')

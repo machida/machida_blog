@@ -3,6 +3,10 @@ module Dashboard
   class ProfilesController < ApplicationController
     before_action :require_login
 
+    def show
+      redirect_to edit_dashboard_profile_path
+    end
+
     def edit
       @user = current_user
     end
@@ -10,9 +14,10 @@ module Dashboard
     def update
       @user = current_user
       if @user.update(user_params)
-        redirect_to dashboard_root_path, notice: 'プロフィールが更新されました。'
+        flash[:notice] = 'プロフィールが更新されました。'
+        redirect_to dashboard_root_path
       else
-        flash.now[:alert] = '更新に失敗しました。'
+        flash.now[:alert] = @user.errors.full_messages
         render :edit
       end
     end

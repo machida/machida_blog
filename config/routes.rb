@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     root to: 'base#index'
-    resource :profile, only: [:edit, :update], controller: 'profiles'
-    resource :site_settings, only: [:edit, :update], controller: 'site_settings'
+    resource :profile, only: [:edit, :update, :show], controller: 'profiles'
+    resource :site_settings, only: [:edit, :update, :show], controller: 'site_settings'
     resources :articles, only: [:new, :create, :edit, :update, :destroy, :index, :show]
   end
 

@@ -32,11 +32,11 @@
             .dashboard-nav__item-label
               | サイト設定
         .dashboard-nav__item
-          = link_to edit_dashboard_profile_path, class: "dashboard-nav__item-link", title: "ユーザー設定" do
+          = link_to edit_dashboard_profile_path, class: "dashboard-nav__item-link", title: "ユーザー情報" do
             .dashboard-nav__item-icon
               i.gg-boy
             .dashboard-nav__item-label
-              | ユーザー設定
+              | ユーザー情報
         .dashboard-nav__item
           = form_with url: logout_path, method: :delete, data: { turbo: false } do
             button.dashboard-nav__item-link(type="submit" title="ログアウト")

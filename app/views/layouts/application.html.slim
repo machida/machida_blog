@@ -4,11 +4,8 @@ html
   body.is-application(class="#{user_signed_in? ? 'is-signed-in':''} #{dashboard_page? ? 'is-dashboard-page' : 'is-public-page'}")
     .a-wrapper
       .a-wrapper__start
-        - if flash
-          #flash-messages.toast.show
-            - flash.to_hash.with_indifferent_access.slice(:notice, :alert).each do |type, message|
-              .flash(class="is-#{type}")
-                = message
+        - if flash[:notice].present?
+          = render 'shared/notice'
         main.page
           header.page__header
             - if dashboard_page?
@@ -16,7 +13,8 @@ html
             - else
               = render 'main_visual'
           .page__body
-            = render_error_messages(flash[:object])
+            - if flash[:alert].present?
+              = render 'shared/error_messages'
             = yield
       .a-wrapper__end
         = render 'footer', site_setting: SiteSetting.first_or_initialize

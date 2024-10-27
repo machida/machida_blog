@@ -1,8 +1,14 @@
-- if object.errors.any?
+- if flash[:alert].is_a?(Array)
   .error-messages
     h2.error-messages__title
-      = t('errors.template.header', model: object.model_name.human, count: object.errors.count)
+      - controller_name = params[:controller].split('/').last.singularize
+      - model_name = t("activerecord.models.#{controller_name}", default: controller_name)
+      | #{model_name}の#{t("actions.#{params[:action]}")}ができませんでした。
     ul.error-messages__messages
-      - object.errors.full_messages.each do |message|
+      - flash[:alert].each do |message|
         li.error-messages__message
           = message
+- else
+  #flash-messages.toast.show
+    .flash(class="is-alert")
+      = flash[:alert]
