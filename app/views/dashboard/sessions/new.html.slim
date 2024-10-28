@@ -1,0 +1,24 @@
+- content_for(:page_title, "ログイン")
+
+.a-container
+  .page__body-inner
+    - unless current_user
+      .a-container.is-xs
+        .a-card
+          .a-card__form
+            = form_with scope: :session, url: dashboard_login_path, local: true, class: 'form' do |f|
+              .form__items
+                .form-item
+                  .form-item__header
+                    = f.label :login, 'Account ID', class: 'a-form-label'
+                  .form-item__body
+                    = f.text_field :login, class: 'a-text-input'
+
+                .form-item
+                  .form-item__header
+                    = f.label :password, class: 'a-form-label'
+                  .form-item__body
+                    = f.password_field :password, class: 'a-text-input'
+
+                .form-item
+                  = f.submit 'ログイン', class: 'a-button is-lg is-primary'

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     resource :profile, only: [:edit, :update, :show], controller: 'profiles'
     resource :site_settings, only: [:edit, :update, :show], controller: 'site_settings'
     resources :articles, only: [:new, :create, :edit, :update, :destroy, :index, :show]
+
+    get 'login', to: 'sessions#new'
+    post 'login', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy'
   end
 
   resources :articles, only: [:index, :show] do
@@ -20,10 +24,6 @@ Rails.application.routes.draw do
       get :feed, defaults: { format: 'rss' }
     end
   end
-
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
 
   post '/images', to: 'images#create'
 

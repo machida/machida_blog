@@ -10,42 +10,43 @@
               i.gg-format-slash
             li.dashboard-breadcrumbs__item
               = link_to request.original_url, class: 'dashboard-breadcrumbs__item-link' do
-                = current_page_title
-      .dashboard-header__end
-        button.admin-bar__pull(data-action="click->toggle-class#toggle")
-          span.is-shown-then-active
-            i.gg-close
-          span.is-hidden-then-active
-            i.gg-menu
-        nav.dashboard-header-nav
-          .dashboard-header-nav__inner
-            .dashboard-header-nav__items
-              .dashboard-header-nav__item
-                = link_to root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ホーム' do
-                  .dashboard-header-nav__item-icon
-                    i.gg-home
-              .dashboard-header-nav__item
-                = link_to dashboard_root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ダッシュボード' do
-                  .dashboard-header-nav__item-icon
-                    i.gg-lock
-              .dashboard-header-nav__item
-                = link_to new_dashboard_article_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}", title: '新規投稿' do
-                  .dashboard-header-nav__item-icon
-                    i.gg-math-plus
-              .dashboard-header-nav__item
-                = link_to dashboard_articles_path(status: 'draft'), class: "dashboard-header-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false }, title: '下書き一覧' do
-                  .dashboard-header-nav__item-icon
-                    i.gg-view-list
-              .dashboard-header-nav__item
-                = link_to edit_dashboard_site_settings_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'サイト設定' do
-                  .dashboard-header-nav__item-icon
-                    i.gg-website
-              .dashboard-header-nav__item
-                = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー情報' do
-                  .dashboard-header-nav__item-icon
-                    i.gg-boy
-              .dashboard-header-nav__item
-                = form_with url: logout_path, method: :delete, data: { turbo: false }, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
-                  button(type="submit")
+                = page_title
+      - if current_user
+        .dashboard-header__end
+          button.admin-bar__pull(data-action="click->toggle-class#toggle")
+            span.is-shown-then-active
+              i.gg-close
+            span.is-hidden-then-active
+              i.gg-menu
+          nav.dashboard-header-nav
+            .dashboard-header-nav__inner
+              .dashboard-header-nav__items
+                .dashboard-header-nav__item
+                  = link_to root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ホーム' do
                     .dashboard-header-nav__item-icon
-                      i.gg-log-out
+                      i.gg-home
+                .dashboard-header-nav__item
+                  = link_to dashboard_root_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'dashboard' ? 'is-active':''}", title: 'ダッシュボード' do
+                    .dashboard-header-nav__item-icon
+                      i.gg-lock
+                .dashboard-header-nav__item
+                  = link_to new_dashboard_article_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'new_article' ? 'is-active':''}", title: '新規投稿' do
+                    .dashboard-header-nav__item-icon
+                      i.gg-math-plus
+                .dashboard-header-nav__item
+                  = link_to dashboard_articles_path(status: 'draft'), class: "dashboard-header-nav__item-link #{yield(:current) == 'drafts' ? 'is-active':''}", data: { turbo: false }, title: '下書き一覧' do
+                    .dashboard-header-nav__item-icon
+                      i.gg-view-list
+                .dashboard-header-nav__item
+                  = link_to edit_dashboard_site_settings_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'サイト設定' do
+                    .dashboard-header-nav__item-icon
+                      i.gg-website
+                .dashboard-header-nav__item
+                  = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー情報' do
+                    .dashboard-header-nav__item-icon
+                      i.gg-boy
+                .dashboard-header-nav__item
+                  = form_with url: dashboard_logout_path, method: :delete, data: { turbo: false }, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
+                    button(type="submit")
+                      .dashboard-header-nav__item-icon
+                        i.gg-log-out

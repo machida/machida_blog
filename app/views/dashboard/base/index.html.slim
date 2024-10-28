@@ -1,7 +1,5 @@
-- content_for(:title, "ダッシュボード")
 - content_for(:current, "dashboard")
-- content_for(:body_classes, "dashboard")
-- content_for(:current_page_title, 'ダッシュボード')
+- content_for(:page_title, 'ダッシュボード')
 
 .a-container.is-md
   .page__body-inner
@@ -38,7 +36,7 @@
             .dashboard-nav__item-label
               | ユーザー情報
         .dashboard-nav__item
-          = form_with url: logout_path, method: :delete, data: { turbo: false } do
+          = form_with url: dashboard_logout_path, method: :delete, data: { turbo: false } do
             button.dashboard-nav__item-link(type="submit" title="ログアウト")
               .dashboard-nav__item-icon
                 i.gg-log-out

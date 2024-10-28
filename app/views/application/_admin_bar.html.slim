@@ -24,6 +24,6 @@
             = link_to edit_dashboard_profile_path, class: "dashboard-header-nav__item-link #{yield(:current) == 'site_settings' ? 'is-active':''}", title: 'ユーザー情報' do
               i.gg-boy
           .dashboard-header-nav__item
-            = form_with url: logout_path, method: :delete, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
+            = form_with url: dashboard_logout_path, method: :delete, class: 'dashboard-header-nav__item-link', title: 'ログアウト' do
               button(type="submit")
                 i.gg-log-out

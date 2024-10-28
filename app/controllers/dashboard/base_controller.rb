@@ -11,7 +11,7 @@ module Dashboard
     def require_login
       unless user_signed_in?
         flash[:alert] = 'ログインが必要です。'
-        redirect_to root_path
+        redirect_to dashboard_login_path
       end
     end
   end

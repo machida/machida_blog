@@ -9,7 +9,7 @@ html
         main.page
           header.page__header
             - if dashboard_page?
-              = render 'dashboard_header', current_page_title: yield(:current_page_title)
+              = render 'dashboard_header', page_title: yield(:page_title)
             - else
               = render 'main_visual'
           .page__body
