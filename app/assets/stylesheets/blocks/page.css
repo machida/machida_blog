@@ -1,9 +1,9 @@
 .page__body-inner {
-  padding-block: 4rem;
+  padding-block: 3rem;
 }
 
 @container page__body (max-width: 400px) {
   .page__body-inner {
-    padding-block: 3rem;
+    padding-block: 2.5rem;
   }
 }

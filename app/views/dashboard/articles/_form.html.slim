@@ -12,7 +12,7 @@
         .form-item
           .form-item__rows
             .form-item__row
-              = form.label :body, '本文', class: 'a-form-label'
+              = form.label :body, '本文', for: 'markdown-input', class: 'a-form-label'
             .form-item__row
               = form.text_area :body, class: 'a-text-input markdown-editor__input', id: 'markdown-input'
 
