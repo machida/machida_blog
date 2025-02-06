@@ -21,7 +21,7 @@ pin "save", to: "/articles/save.js"
 pin "new", to: "/articles/new.js"
 
 # 共有JavaScriptコンポーネント
-pin "shared/toast", to: "/shared/toast.js"
+pin "shared/toast", to: "shared/toast.js"
 
 # 外部からのJavaScriptライブラリ
 pin "postcss-import", to: "https://cdn.jsdelivr.net/npm/postcss-import@16.0.0/+esm"
