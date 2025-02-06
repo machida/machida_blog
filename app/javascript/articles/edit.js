@@ -4,8 +4,8 @@ const titlePreview = document.getElementById('title-preview');
 const textarea = document.getElementById('markdown-input');
 const preview = document.getElementById('markdown-preview');
 
-import { updateTitlePreview, updateMarkdownPreview, autoResizeTextarea } from './markdownSetup.js';
-import { handleDragOver, handleDrop, handlePaste } from './imageUpload.js';
+import { updateTitlePreview, updateMarkdownPreview, autoResizeTextarea } from './markdownSetup';
+import { handleDragOver, handleDrop, handlePaste } from './imageUpload';
 
 // Markdown-It の初期化
 const md = markdownit({

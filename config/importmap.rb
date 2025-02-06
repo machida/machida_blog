@@ -13,12 +13,12 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "flash_controller", to: "controllers/flash_controller.js", preload: true
 
 # マークダウン関連の機能
-pin "markdownSetup", to: "/articles/markdownSetup.js"
-pin "imageUpload", to: "/articles/imageUpload.js"
-pin "edit", to: "/articles/edit.js"
-pin "show", to: "/articles/show.js"
-pin "save", to: "/articles/save.js"
-pin "new", to: "/articles/new.js"
+pin "markdownSetup", to: "/assets/articles/markdownSetup.js"
+pin "imageUpload", to: "/assets/articles/imageUpload.js"
+pin "edit", to: "/assets/articles/edit.js"
+pin "show", to: "/assets/articles/show.js"
+pin "save", to: "/assets/articles/save.js"
+pin "new", to: "/assets/articles/new.js"
 
 # 共有JavaScriptコンポーネント
 pin "shared/toast", to: "shared/toast.js"
