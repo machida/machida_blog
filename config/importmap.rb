@@ -10,7 +10,7 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 # フラッシュメッセージ用コントローラー
-pin "flash_controller", to: "/controllers/flash_controller.js", preload: true
+pin "flash_controller", to: "controllers/flash_controller.js", preload: true
 
 # マークダウン関連の機能
 pin "markdownSetup", to: "/articles/markdownSetup.js"
